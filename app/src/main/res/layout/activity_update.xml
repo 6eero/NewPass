@@ -6,62 +6,119 @@
     android:layout_height="match_parent"
     tools:context=".UpdateActivity"
     android:padding="30sp"
-    android:background="@color/background">
+    android:background="@color/background_primary">
+
+    <ImageView
+        android:id="@+id/background_inputbox_1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/background_inputbox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back">
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/background_inputbox_2"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/background_inputbox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/background_inputbox_1">
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/background_inputbox_3"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/background_inputbox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/background_inputbox_2">
+    </ImageView>
 
     <EditText
         android:id="@+id/name_input2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_width="287dp"
+        android:layout_height="58dp"
         android:ems="10"
-        android:inputType="text"
+        android:fontFamily="@font/jetbrainsmonoregular"
         android:hint="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="22dp"
+        android:textSize="16dp"
+        android:inputType="text"
+        android:textColor="@color/text_primary"
+        android:backgroundTint="@color/background_secondary"
+        android:textColorHint="@color/text_primary"
+        app:layout_constraintBottom_toBottomOf="@+id/background_inputbox_1"
+        app:layout_constraintEnd_toEndOf="@+id/background_inputbox_1"
+        app:layout_constraintStart_toStartOf="@+id/background_inputbox_1"
+        app:layout_constraintTop_toTopOf="@+id/background_inputbox_1" />
 
     <EditText
         android:id="@+id/email_input2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="58dp"
         android:ems="10"
-        android:inputType="text"
+        android:textSize="16dp"
+        android:fontFamily="@font/jetbrainsmonoregular"
         android:hint="Email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_input2" />
+        android:inputType="text"
+        android:paddingBottom="22dp"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_primary"
+        android:backgroundTint="@color/background_secondary"
+        app:layout_constraintBottom_toBottomOf="@+id/background_inputbox_2"
+        app:layout_constraintEnd_toEndOf="@+id/background_inputbox_2"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/background_inputbox_2"
+        app:layout_constraintTop_toTopOf="@+id/background_inputbox_2" />
 
     <EditText
         android:id="@+id/password_input2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="58dp"
         android:ems="10"
-        android:inputType="text"
+        android:textSize="16dp"
+        android:fontFamily="@font/jetbrainsmonoregular"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_primary"
+        android:backgroundTint="@color/background_secondary"
+        android:paddingBottom="22dp"
         android:hint="Password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_input2" />
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="@+id/background_inputbox_3"
+        app:layout_constraintEnd_toEndOf="@+id/background_inputbox_3"
+        app:layout_constraintStart_toStartOf="@+id/background_inputbox_3"
+        app:layout_constraintTop_toTopOf="@+id/background_inputbox_3" />
 
-    <Button
+    <ImageButton
         android:id="@+id/update_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Update"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input2" />
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@android:color/transparent"
+        android:padding="1dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btn_update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_button" />
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@android:color/transparent"
+        android:padding="1dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btn_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_back"

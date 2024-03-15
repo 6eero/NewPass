@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:backgroundTint="@color/background">
+        android:backgroundTint="@color/background_primary">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:text="1"
                 android:textSize="40dp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:fontFamily="@font/jetbrainsmonobold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
                 android:layout_marginStart="24dp"
                 android:fontFamily="@font/jetbrainsmonoregular"
                 android:text="Name 1"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/row_id_txt"
@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="Email 1"
                 android:fontFamily="@font/jetbrainsmonoregular"
+                android:textColor="@color/text_secondary"
                 app:layout_constraintStart_toStartOf="@+id/row_name_txt"
                 app:layout_constraintTop_toBottomOf="@+id/row_name_txt" />
 

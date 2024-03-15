@@ -4,14 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/background_primary"
     tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/black_bg"
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:src="@color/black" />
 
     <TextView
         android:id="@+id/textView_Create"
@@ -63,14 +57,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/jetbrainsmonoregular"
         android:text="All"
-        android:textColor="@color/black"
+        android:textColor="@color/text_primary"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/black_bg"
+        app:layout_constraintTop_toBottomOf="@+id/button_Add"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -80,7 +74,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="@font/jetbrainsmonoregular"
         android:text="count"
-        android:textColor="@color/gray"
+        android:textColor="@color/text_secondary"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_All"

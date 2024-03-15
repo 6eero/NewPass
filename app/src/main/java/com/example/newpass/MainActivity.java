@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Change the color of the status bar
-        changeStatusBarColor(R.color.black);
+        changeStatusBarColor(R.color.background_primary);
         setStatusBarIconsDark(false);
 
         // Assign the IDs to the corresponding variable
@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Set the color of the status bar
             window.setStatusBarColor(getResources().getColor(color));
+            window.setNavigationBarColor(getResources().getColor(color));
         } catch (IllegalArgumentException e) {
             // If an IllegalArgumentException occurs, throw an exception with an explanatory message
             throw new IllegalArgumentException("The provided color is invalid.");

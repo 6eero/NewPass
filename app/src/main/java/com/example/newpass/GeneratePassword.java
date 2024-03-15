@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -28,6 +30,10 @@ public class GeneratePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_password);
+
+        // Change the color of the status bar
+        changeStatusBarColor(R.color.background_primary);
+        setStatusBarIconsDark(false);
 
 
         textViewLength = findViewById(R.id.textView_Lenght_Value);
@@ -68,9 +74,9 @@ public class GeneratePassword extends AppCompatActivity {
 
                 // Se lo stato è true, imposta l'immagine su btn_y, altrimenti su btn_n
                 if (stateUppercase) {
-                    buttonUppercase.setImageDrawable(getResources().getDrawable(R.drawable.btn_y));
+                    buttonUppercase.setImageDrawable(getResources().getDrawable(R.drawable.btn_yes));
                 } else {
-                    buttonUppercase.setImageDrawable(getResources().getDrawable(R.drawable.btn_n));
+                    buttonUppercase.setImageDrawable(getResources().getDrawable(R.drawable.btn_no));
                 }
 
                 if (uppercase) {
@@ -92,9 +98,9 @@ public class GeneratePassword extends AppCompatActivity {
 
                 // Se lo stato è true, imposta l'immagine su btn_y, altrimenti su btn_n
                 if (stateNumber) {
-                    buttonNumber.setImageDrawable(getResources().getDrawable(R.drawable.btn_y));
+                    buttonNumber.setImageDrawable(getResources().getDrawable(R.drawable.btn_yes));
                 } else {
-                    buttonNumber.setImageDrawable(getResources().getDrawable(R.drawable.btn_n));
+                    buttonNumber.setImageDrawable(getResources().getDrawable(R.drawable.btn_no));
                 }
                 if (number) {
                     number = false;
@@ -115,9 +121,9 @@ public class GeneratePassword extends AppCompatActivity {
 
                 // Se lo stato è true, imposta l'immagine su btn_y, altrimenti su btn_n
                 if (stateSpecial) {
-                    buttonSpecial.setImageDrawable(getResources().getDrawable(R.drawable.btn_y));
+                    buttonSpecial.setImageDrawable(getResources().getDrawable(R.drawable.btn_yes));
                 } else {
-                    buttonSpecial.setImageDrawable(getResources().getDrawable(R.drawable.btn_n));
+                    buttonSpecial.setImageDrawable(getResources().getDrawable(R.drawable.btn_no));
                 }
 
                 if (special) {
@@ -219,5 +225,52 @@ public class GeneratePassword extends AppCompatActivity {
         ClipData clipData = ClipData.newPlainText("Testo copiato", text);
         // Copia il ClipData nella clipboard
         clipboardManager.setPrimaryClip(clipData);
+    }
+
+    /**
+     * Change the color of the status bar of the current activity.
+     *
+     * @param color The color to set on the status bar. Must be a valid color value.
+     * @throws IllegalArgumentException If the provided color is invalid.
+     */
+    private void changeStatusBarColor(int color) {
+        try {
+
+            // Get the window of the current activity
+            Window window = getWindow();
+
+            // Add the flag to draw the status bar background
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+            // Set the color of the status bar
+            window.setStatusBarColor(getResources().getColor(color));
+            window.setNavigationBarColor(getResources().getColor(color));
+        } catch (IllegalArgumentException e) {
+            // If an IllegalArgumentException occurs, throw an exception with an explanatory message
+            throw new IllegalArgumentException("The provided color is invalid.");
+        }
+    }
+
+
+    /**
+     * Sets the color of the status bar icons (such as time, battery, etc.) to either dark or light mode.
+     *
+     * @param dark True to set the status bar icons to dark mode, false to set them to light mode.
+     */
+    private void setStatusBarIconsDark(boolean dark) {
+
+        // Get the decor view of the window
+        View decor = getWindow().getDecorView();
+
+        // Set the system UI visibility based on the provided mode
+        if (dark) {
+
+            // Set status bar icons to dark mode
+            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+
+            // Set status bar icons to light mode
+            decor.setSystemUiVisibility(0);
+        }
     }
 }
