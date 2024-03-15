@@ -18,15 +18,16 @@
             android:layout_height="wrap_content"
             android:paddingBottom="35dp">
 
-            <TextView
-                android:id="@+id/row_id_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/icon_entry"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:fontFamily="@font/jetbrainsmonobold"
+                android:src="@drawable/icon_entry"
                 android:text="1"
+                android:textColor="@color/text_primary"
                 android:textSize="40dp"
                 android:textStyle="bold"
-                android:textColor="@color/text_primary"
-                android:fontFamily="@font/jetbrainsmonobold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,18 +42,31 @@
                 android:textColor="@color/text_primary"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/row_id_txt"
-                tools:layout_editor_absoluteY="12dp" />
+                app:layout_constraintStart_toEndOf="@+id/icon_entry"
+                app:layout_constraintTop_toTopOf="@+id/icon_entry" />
 
             <TextView
                 android:id="@+id/row_email_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email 1"
                 android:fontFamily="@font/jetbrainsmonoregular"
+                android:text="Email 1"
                 android:textColor="@color/text_secondary"
-                app:layout_constraintStart_toStartOf="@+id/row_name_txt"
-                app:layout_constraintTop_toBottomOf="@+id/row_name_txt" />
+                app:layout_constraintBottom_toBottomOf="@+id/icon_entry"
+                app:layout_constraintStart_toStartOf="@+id/row_name_txt" />
+
+            <TextView
+                android:id="@+id/row_tw_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jetbrainsmonoregular"
+                android:text="TW"
+                android:textSize="17dp"
+                android:textColor="@color/text_primary"
+                app:layout_constraintBottom_toBottomOf="@+id/icon_entry"
+                app:layout_constraintEnd_toEndOf="@+id/icon_entry"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/icon_entry" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
