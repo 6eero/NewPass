@@ -16,16 +16,11 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    Context context;
-    ArrayList row_id, row_name, row_email, row_password;
-    Activity activity;
+    private Context context;
+    private ArrayList row_id, row_name, row_email, row_password;
+    private Activity activity;
 
-    CustomAdapter(Activity activity,
-                  Context context,
-                  ArrayList row_id,
-                  ArrayList row_name,
-                  ArrayList row_email,
-                  ArrayList row_password) {
+    CustomAdapter(Activity activity, Context context, ArrayList row_id, ArrayList row_name, ArrayList row_email, ArrayList row_password) {
         this.activity = activity;
         this.context = context;
         this.row_id = row_id;
@@ -47,7 +42,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.row_id_txt.setText(String.valueOf(row_id.get(position)));
         holder.row_name_txt.setText(String.valueOf(row_name.get(position)));
         holder.row_email_txt.setText(String.valueOf(row_email.get(position)));
-        holder.row_password_txt.setText(String.valueOf(row_password.get(position)));
+        //holder.row_password_txt.setText(String.valueOf(row_password.get(position)));
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +51,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("entry", String.valueOf(row_id.get(position)));
                 intent.putExtra("name", String.valueOf(row_name.get(position)));
                 intent.putExtra("email", String.valueOf(row_email.get(position)));
-                intent.putExtra("password", String.valueOf(row_password.get(position)));
+                intent.putExtra("password", String.valueOf(row_password.get(position)));   // change this to change the displayed password in the update activity
                 activity.startActivityForResult(intent, 1);
             }
         });
@@ -77,7 +72,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             row_id_txt = itemView.findViewById(R.id.row_id_txt);
             row_name_txt = itemView.findViewById(R.id.row_name_txt);
             row_email_txt = itemView.findViewById(R.id.row_email_txt);
-            row_password_txt = itemView.findViewById(R.id.row_password_txt);
+            //row_password_txt = itemView.findViewById(R.id.row_password_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }
