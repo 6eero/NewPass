@@ -37,9 +37,13 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
-                myDB.addEntry(name_input.getText().toString().trim(),
-                        email_input.getText().toString().trim(),
-                        password_input.getText().toString().trim());
+                try {
+                    myDB.addEntry(name_input.getText().toString().trim(),
+                            email_input.getText().toString().trim(),
+                            password_input.getText().toString().trim());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 

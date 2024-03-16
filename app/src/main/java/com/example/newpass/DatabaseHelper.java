@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -43,13 +44,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addEntry(String name, String email, String password) {
+    /**
+     * Adds a new entry with the given name, email, and password to the database.
+     *
+     * @param name      The name of the entry.
+     * @param email     The email of the entry.
+     * @param password  The password of the entry (it will be encrypted before being inserted into the database)
+     */
+    void addEntry(String name, String email, String password) throws Exception {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        //TODO: encrypt password
+        String encryptedPassword = EncryptionHelper.encrypt(password);
+        Log.i("89237", "password: " + password);
+        Log.i("89237", "encrypted password: " + encryptedPassword);
+
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_EMAIL, email);
-        cv.put(COLUMN_PASSWORD, password);
+        cv.put(COLUMN_PASSWORD, encryptedPassword);
 
         long result = db.insert(TABLE_NAME, null, cv);
 
@@ -75,6 +88,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     void updateData(String row_id, String name, String email, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+
+
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_EMAIL, email);
         cv.put(COLUMN_PASSWORD, password);

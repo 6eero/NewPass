@@ -4,11 +4,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKeys;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,6 +21,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
 
@@ -28,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> row_id, row_name, row_email, row_password;
     private CustomAdapter customAdapter;
     private ImageView empty_imageview;
+    String key;
+    EncryptionHelper encryptionHelper;
+
 
 
     @SuppressLint("SetTextI18n")
@@ -35,6 +45,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // This portion of code only runs on the first run after installation
+        if (MySharedPreferences.isFirstRunAfterInstallation(this)) {
+            encryptionHelper = new EncryptionHelper();
+            key = EncryptionHelper.generateRandomKey(32);
+
+            SharedPreferences sharedPreferences = getSharedPreferences("SharedPref_name", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("key", key);
+            editor.apply();
+        }
+
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref_name", MODE_PRIVATE);
+        String shared = sharedPreferences.getString("key", "");
+
+        Log.i("435f", "psw: " + shared);
 
         // Change the color of the status bar
         changeStatusBarColor(R.color.background_primary);
@@ -175,4 +201,5 @@ public class MainActivity extends AppCompatActivity {
             decor.setSystemUiVisibility(0);
         }
     }
+
 }
