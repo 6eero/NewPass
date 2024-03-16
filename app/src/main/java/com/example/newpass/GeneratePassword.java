@@ -31,7 +31,6 @@ public class GeneratePassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_password);
 
-        // Change the color of the status bar
         changeStatusBarColor(R.color.background_primary);
         setStatusBarIconsDark(false);
 
@@ -53,26 +52,23 @@ public class GeneratePassword extends AppCompatActivity {
         textViewLength.setText("["+ lenght +"]");
         textViewPassword.setText(generaPassword(lenght, uppercase, number, special));
 
-        //Copia
+
         textViewPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Copia il testo nel TextView nella clipboard
+
                 copyToClipboard(textViewPassword.getText().toString());
-                // Visualizza un messaggio di conferma
+
                 Toast.makeText(GeneratePassword.this, "Testo copiato nella clipboard", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Bottone per disabilitare i caratteri uppercase
         buttonUppercase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // Inverti lo stato corrente
                 stateUppercase = !stateUppercase;
 
-                // Se lo stato è true, imposta l'immagine su btn_y, altrimenti su btn_n
                 if (stateUppercase) {
                     buttonUppercase.setImageDrawable(getResources().getDrawable(R.drawable.btn_yes));
                 } else {
@@ -89,14 +85,12 @@ public class GeneratePassword extends AppCompatActivity {
             }
         });
 
-        // Bottone per disabilitare i caratteri numerici
         buttonNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inverti lo stato corrente
+
                 stateNumber = !stateNumber;
 
-                // Se lo stato è true, imposta l'immagine su btn_y, altrimenti su btn_n
                 if (stateNumber) {
                     buttonNumber.setImageDrawable(getResources().getDrawable(R.drawable.btn_yes));
                 } else {
@@ -112,14 +106,12 @@ public class GeneratePassword extends AppCompatActivity {
             }
         });
 
-        // Bottone per disabilitare i caratteri speciali
         buttonSpecial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inverti lo stato corrente
+
                 stateSpecial = !stateSpecial;
 
-                // Se lo stato è true, imposta l'immagine su btn_y, altrimenti su btn_n
                 if (stateSpecial) {
                     buttonSpecial.setImageDrawable(getResources().getDrawable(R.drawable.btn_yes));
                 } else {
@@ -152,26 +144,24 @@ public class GeneratePassword extends AppCompatActivity {
             }
         });
 
-        // Aggiungi un listener per il cambiamento del valore della SeekBar
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
                 lenght = progress;
 
-                // Aggiorna la TextView con il valore corrente della SeekBar
                 textViewLength.setText("["+ lenght +"]");
                 textViewPassword.setText(generaPassword(lenght, uppercase, number, special));
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // Metodo richiesto ma non utilizzato in questo caso
+
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // Metodo richiesto ma non utilizzato in questo caso
+
             }
         });
 

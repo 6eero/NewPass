@@ -25,6 +25,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.context = context;
     }
 
+    /**
+     * Called when the database is created for the first time. This is where the creation
+     * of database tables and initial population should occur.
+     *
+     * @param db The database being created.
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query =
@@ -37,6 +43,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
+    /**
+     * Called when the database needs to be upgraded. This method is responsible for
+     * handling any necessary changes to the database schema to accommodate the new version.
+     *
+     * @param db The database being upgraded.
+     * @param oldVersion The old version of the database.
+     * @param newVersion The new version of the database.
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
@@ -69,6 +83,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Retrieves all data from the table.
+     *
+     * @return A Cursor containing the result set of the SQL query.
+     */
     Cursor readAllData() {
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -81,6 +100,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    /**
+     * Updates an existing row in the database table with the specified row ID.
+     *
+     * @param row_id   The ID of the row to be updated.
+     * @param name     The new value for the name column.
+     * @param email    The new value for the email column.
+     * @param password The new value for the password column.
+     */
     void updateData(String row_id, String name, String email, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -99,6 +126,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Deletes a specific row from the database table based on the given row ID.
+     *
+     * @param row_id The ID of the row to be deleted.
+     */
     void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});

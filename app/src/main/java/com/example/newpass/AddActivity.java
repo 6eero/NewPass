@@ -34,6 +34,14 @@ public class AddActivity extends AppCompatActivity {
         back_button = findViewById(R.id.btn_back);
 
         add_button.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Sets an OnClickListener for a button.
+             * When the button is clicked, it creates a new entry in the database using the values
+             * entered in the name_input, email_input, and password_input fields.
+             *
+             * @param v The view (button) that was clicked.
+             */
             @Override
             public void onClick(View v) {
                 DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
@@ -48,6 +56,13 @@ public class AddActivity extends AppCompatActivity {
         });
 
         back_button.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Sets an OnClickListener for a v button.
+             * When the button is clicked, it starts the MainActivity and finishes the current activity (AddActivity).
+             *
+             * @param v The view (button) that was clicked.
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddActivity.this, MainActivity.class);

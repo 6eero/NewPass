@@ -50,6 +50,14 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
         update_button.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Sets an OnClickListener for a button.
+             * When the view is clicked, it updates the entry in the database with the new name, email, and encrypted password
+             * obtained from the input fields of the UpdateActivity.
+             *
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 //And only then we call this
@@ -68,6 +76,13 @@ public class UpdateActivity extends AppCompatActivity {
         });
 
         back_button.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Sets an OnClickListener for a button.
+             * When the button is clicked, it starts the MainActivity and finishes the current activity (UpdateActivity).
+             *
+             * @param v The view (button) that was clicked.
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
@@ -77,6 +92,11 @@ public class UpdateActivity extends AppCompatActivity {
         });
 
         delete_button.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Sets an OnClickListener for a button.
+             * When the button is clicked, it displays a confirmation dialog for deleting an entry.
+             */
             @Override
             public void onClick(View v) {
                 confirmDialog();
@@ -84,6 +104,13 @@ public class UpdateActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Retrieves data from the intent extras and sets the values to the corresponding input fields.
+     * If the intent extras contain entry, name, email, and password data, it sets the values to the input fields.
+     * Otherwise, it displays a toast indicating that no data is available.
+     *
+     * @throws Exception If an error occurs during the decryption process.
+     */
     void getAndSetIntentData() throws Exception {
         if(getIntent().hasExtra("entry") && getIntent().hasExtra("name") &&
                 getIntent().hasExtra("email") && getIntent().hasExtra("password")){
@@ -105,6 +132,11 @@ public class UpdateActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Displays a confirmation dialog for deleting an entry.
+     * If the user confirms deletion, the entry is deleted from the database.
+     * If the user cancels deletion, the dialog is dismissed.
+     */
     void confirmDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + name + " ?");
