@@ -3,14 +3,12 @@ package com.example.newpass;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -47,9 +45,7 @@ public class UpdateActivity extends AppCompatActivity {
 
         try {
             getAndSetIntentData();
-        } catch (InvalidAlgorithmParameterException | NoSuchPaddingException |
-                 IllegalBlockSizeException | NoSuchAlgorithmException | BadPaddingException |
-                 InvalidKeyException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -65,9 +61,7 @@ public class UpdateActivity extends AppCompatActivity {
                 try {
                     String encryptedPassword = EncryptionHelper.encrypt(password);
                     myDB.updateData(entry, name, email, encryptedPassword);
-                } catch (NoSuchPaddingException | NoSuchAlgorithmException |
-                         InvalidAlgorithmParameterException | InvalidKeyException |
-                         IllegalBlockSizeException | BadPaddingException e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
@@ -90,7 +84,7 @@ public class UpdateActivity extends AppCompatActivity {
         });
     }
 
-    void getAndSetIntentData() throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    void getAndSetIntentData() throws Exception {
         if(getIntent().hasExtra("entry") && getIntent().hasExtra("name") &&
                 getIntent().hasExtra("email") && getIntent().hasExtra("password")){
             //Getting Data from Intent
