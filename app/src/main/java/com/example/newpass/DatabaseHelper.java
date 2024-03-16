@@ -55,14 +55,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        //TODO: encrypt password
-        String encryptedPassword = EncryptionHelper.encrypt(password);
-        Log.i("89237", "password: " + password);
-        Log.i("89237", "encrypted password: " + encryptedPassword);
-
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_EMAIL, email);
-        cv.put(COLUMN_PASSWORD, encryptedPassword);
+        cv.put(COLUMN_PASSWORD, password);
 
         long result = db.insert(TABLE_NAME, null, cv);
 

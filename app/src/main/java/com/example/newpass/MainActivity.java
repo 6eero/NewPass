@@ -35,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> row_id, row_name, row_email, row_password;
     private CustomAdapter customAdapter;
     private ImageView empty_imageview;
-    String key;
-    EncryptionHelper encryptionHelper;
-
 
 
     @SuppressLint("SetTextI18n")
@@ -48,19 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         // This portion of code only runs on the first run after installation
         if (MySharedPreferences.isFirstRunAfterInstallation(this)) {
-            encryptionHelper = new EncryptionHelper();
-            key = EncryptionHelper.generateRandomKey(32);
 
-            SharedPreferences sharedPreferences = getSharedPreferences("SharedPref_name", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("key", key);
-            editor.apply();
         }
-
-        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref_name", MODE_PRIVATE);
-        String shared = sharedPreferences.getString("key", "");
-
-        Log.i("435f", "psw: " + shared);
 
         // Change the color of the status bar
         changeStatusBarColor(R.color.background_primary);
