@@ -15,6 +15,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 public class UpdateActivity extends AppCompatActivity {
 
     EditText name_input, email_input, password_input;
@@ -37,7 +45,13 @@ public class UpdateActivity extends AppCompatActivity {
         back_button = findViewById(R.id.btn_back);
         delete_button = findViewById(R.id.delete_button);
 
-        getAndSetIntentData();
+        try {
+            getAndSetIntentData();
+        } catch (InvalidAlgorithmParameterException | NoSuchPaddingException |
+                 IllegalBlockSizeException | NoSuchAlgorithmException | BadPaddingException |
+                 InvalidKeyException e) {
+            throw new RuntimeException(e);
+        }
 
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +61,15 @@ public class UpdateActivity extends AppCompatActivity {
                 name = name_input.getText().toString().trim();
                 email = email_input.getText().toString().trim();
                 password = password_input.getText().toString().trim();
-                myDB.updateData(entry, name, email, password);
+
+                try {
+                    String encryptedPassword = EncryptionHelper.encrypt(password);
+                    myDB.updateData(entry, name, email, encryptedPassword);
+                } catch (NoSuchPaddingException | NoSuchAlgorithmException |
+                         InvalidAlgorithmParameterException | InvalidKeyException |
+                         IllegalBlockSizeException | BadPaddingException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -68,7 +90,7 @@ public class UpdateActivity extends AppCompatActivity {
         });
     }
 
-    void getAndSetIntentData(){
+    void getAndSetIntentData() throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         if(getIntent().hasExtra("entry") && getIntent().hasExtra("name") &&
                 getIntent().hasExtra("email") && getIntent().hasExtra("password")){
             //Getting Data from Intent
@@ -77,10 +99,12 @@ public class UpdateActivity extends AppCompatActivity {
             email = getIntent().getStringExtra("email");
             password = getIntent().getStringExtra("password");
 
+            String decryptedPassword = EncryptionHelper.decrypt(password);
+
             //Setting Intent Data
             name_input.setText(name);
             email_input.setText(email);
-            password_input.setText(password);
+            password_input.setText(decryptedPassword);
             //Log.d("stev", title+" "+author+" "+pages);
         }else{
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
