@@ -41,7 +41,7 @@ NewPass is a secure password management application designed to generate and sto
   
 
 ## ⚒️ Todo
-- [ ] Currently the encryption key and IV vector are hardcoded into the source code. I have to find a way to mask them.
+- [x] Currently the encryption key and IV vector are hardcoded into the source code. I have to find a way to mask them.
 - [x] Imporve Stability.
 - [x] Improve UI/UX.
 - [x] Add encryption: The app does not currently provide secrecy restrictions on entered passwords.
