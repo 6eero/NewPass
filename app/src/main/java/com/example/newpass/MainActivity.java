@@ -21,7 +21,14 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableEntryException;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
+
+import javax.crypto.SecretKey;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         if (MySharedPreferences.isFirstRunAfterInstallation(this)) {
 
         }
+
 
         // Change the color of the status bar
         changeStatusBarColor(R.color.background_primary);
