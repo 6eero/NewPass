@@ -30,13 +30,27 @@ NewPass is a secure password management application designed to generate and sto
 
 ## 🗝️ Key Features:
 - **Password Generation**: NewPass provides a robust password generator that allows you to create complex and secure passwords tailored to your specific requirements. You can customize the length and the character set (Uppercase, Numbers and Special).
+
 - **Local Storage**: Your passwords are stored locally on your device, ensuring complete privacy and control over your data. NewPass does not store any passwords on external servers, minimizing the risk of unauthorized access (If you uninstall the app, your password are lost!).
+
 - **AES Encryption**: NewPass encrypts all stored passwords using Advanced Encryption Standard (AES) with Cipher Block Chaining (CBC) mode before saving them in the local database.
+
 - **User-Friendly Interface**: NewPass features an intuitive and user-friendly interface, making it easy to generate, view, and manage your passwords. The app offers convenient options for copying passwords to the clipboard and securely sharing them with other applications.
 
 
 ## ⚠️ Disclaimer
 The project is under **very active** development.
+
+
+## ⛏️ Manual Installation
+To use NewPass, follow these steps:
+1. Clone this repository.
+```
+git clone https://github.com/6eero/NewPass.git
+```
+2. Open the project in Android Studio.
+3. Build and run the app on your Android device or emulator.
+4. Launch NewPass.
   
 
 ## ⚒️ Todo
