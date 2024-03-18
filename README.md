@@ -28,19 +28,19 @@
 NewPass is a secure password management application designed to generate and store strong passwords locally on your device. With NewPass, you can create highly secure passwords for your accounts and services without the need to remember them.
 
 
-## Key Features:
-- **Password Generation**: NewPass provides a robust password generator that allows you to create complex and secure passwords tailored to your specific requirements. You can customize the length, character set (Uppercase, Numbers and Special), and complexity of the generated passwords.
-- **Local Storage**: Your passwords are stored locally on your device, ensuring complete privacy and control over your data. NewPass does not store any passwords on external servers, minimizing the risk of unauthorized access (If you uninstall the app, the password are lost!).
-- **AES Encryption**: To enhance security, NewPass encrypts all stored passwords using Advanced Encryption Standard (AES) with Cipher Block Chaining (CBC) mode. This industry-standard encryption algorithm ensures that your sensitive data remains protected even if your device is compromised.
+## 🗝️ Key Features:
+- **Password Generation**: NewPass provides a robust password generator that allows you to create complex and secure passwords tailored to your specific requirements. You can customize the length and the character set (Uppercase, Numbers and Special).
+- **Local Storage**: Your passwords are stored locally on your device, ensuring complete privacy and control over your data. NewPass does not store any passwords on external servers, minimizing the risk of unauthorized access (If you uninstall the app, your password are lost!).
+- **AES Encryption**: NewPass encrypts all stored passwords using Advanced Encryption Standard (AES) with Cipher Block Chaining (CBC) mode before saving them in the local database.
 - **User-Friendly Interface**: NewPass features an intuitive and user-friendly interface, making it easy to generate, view, and manage your passwords. The app offers convenient options for copying passwords to the clipboard and securely sharing them with other applications.
 
 
 ## ⚠️ Disclaimer
-- The project is under **very active** development.
-- Do not use the app to store your password right now.
+The project is under **very active** development.
   
 
 ## ⚒️ Todo
+- [ ] Add a login menu to unlock the application.
 - [x] Currently the encryption key and IV vector are hardcoded into the source code. I have to find a way to mask them.
 - [x] Imporve Stability.
 - [x] Improve UI/UX.
