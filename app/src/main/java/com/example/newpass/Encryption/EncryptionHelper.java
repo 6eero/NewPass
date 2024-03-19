@@ -1,4 +1,4 @@
-package com.example.newpass;
+package com.example.newpass.Encryption;
 
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;

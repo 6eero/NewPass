@@ -1,13 +1,17 @@
-package com.example.newpass;
+package com.example.newpass.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.newpass.Activities.MainActivity;
+import com.example.newpass.Activities.StringUtility;
+import com.example.newpass.Encryption.EncryptionHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -19,18 +23,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_NAME = "record_name";
     private static final String COLUMN_EMAIL = "record_email";
     private static final String COLUMN_PASSWORD = "record_password";
+    private static final String KEY_ENCRYPTION = StringUtility.getSharedString();
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        SQLiteDatabase.loadLibs(context);
         this.context = context;
     }
 
-    /**
-     * Called when the database is created for the first time. This is where the creation
-     * of database tables and initial population should occur.
-     *
-     * @param db The database being created.
-     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query =
@@ -43,14 +43,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    /**
-     * Called when the database needs to be upgraded. This method is responsible for
-     * handling any necessary changes to the database schema to accommodate the new version.
-     *
-     * @param db The database being upgraded.
-     * @param oldVersion The old version of the database.
-     * @param newVersion The new version of the database.
-     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
@@ -64,8 +56,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param email     The email of the entry.
      * @param password  The password of the entry (it will be encrypted before being inserted into the database)
      */
-    void addEntry(String name, String email, String password) throws Exception {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void addEntry(String name, String email, String password) throws Exception {
+        SQLiteDatabase db = this.getWritableDatabase(KEY_ENCRYPTION);
         ContentValues cv = new ContentValues();
 
         String encryptedPassword = EncryptionHelper.encrypt(password);
@@ -83,21 +75,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    /**
-     * Retrieves all data from the table.
-     *
-     * @return A Cursor containing the result set of the SQL query.
-     */
-    Cursor readAllData() {
+    public Cursor readAllData() {
+        SQLiteDatabase db = this.getReadableDatabase(KEY_ENCRYPTION);
         String query = "SELECT * FROM " + TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = null;
-        if (db != null) {
-            cursor = db.rawQuery(query, null);
-        }
-
-        return cursor;
+        return db.rawQuery(query, null);
     }
 
     /**
@@ -108,8 +90,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param email    The new value for the email column.
      * @param password The new value for the password column.
      */
-    void updateData(String row_id, String name, String email, String password){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void updateData(String row_id, String name, String email, String password){
+        SQLiteDatabase db = this.getWritableDatabase(KEY_ENCRYPTION);
         ContentValues cv = new ContentValues();
 
 
@@ -126,13 +108,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    /**
-     * Deletes a specific row from the database table based on the given row ID.
-     *
-     * @param row_id The ID of the row to be deleted.
-     */
-    void deleteOneRow(String row_id){
-        SQLiteDatabase db = this.getWritableDatabase();
+
+    public void deleteOneRow(String row_id){
+        SQLiteDatabase db = this.getWritableDatabase(KEY_ENCRYPTION);
         long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});
         if(result == -1){
             Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();

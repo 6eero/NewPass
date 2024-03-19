@@ -38,4 +38,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("com.google.android.material:material:1.11.0")
+    implementation("net.zetetic:android-database-sqlcipher:4.4.0")
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
 }

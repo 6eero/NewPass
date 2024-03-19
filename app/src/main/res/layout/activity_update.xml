@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateActivity"
+    tools:context=".Activities.UpdateActivity"
     android:padding="30sp"
     android:background="@color/background_primary">
 

@@ -1,4 +1,4 @@
-package com.example.newpass;
+package com.example.newpass.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.example.newpass.Database.DatabaseHelper;
+import com.example.newpass.R;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -56,13 +58,6 @@ public class AddActivity extends AppCompatActivity {
         });
 
         back_button.setOnClickListener(new View.OnClickListener() {
-
-            /**
-             * Sets an OnClickListener for a v button.
-             * When the button is clicked, it starts the MainActivity and finishes the current activity (AddActivity).
-             *
-             * @param v The view (button) that was clicked.
-             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddActivity.this, MainActivity.class);
@@ -72,49 +67,32 @@ public class AddActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Change the color of the status bar of the current activity.
-     *
-     * @param color The color to set on the status bar. Must be a valid color value.
-     * @throws IllegalArgumentException If the provided color is invalid.
-     */
+
     private void changeStatusBarColor(int color) {
         try {
 
-            // Get the window of the current activity
             Window window = getWindow();
 
-            // Add the flag to draw the status bar background
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-            // Set the color of the status bar
             window.setStatusBarColor(getResources().getColor(color));
             window.setNavigationBarColor(getResources().getColor(color));
         } catch (IllegalArgumentException e) {
-            // If an IllegalArgumentException occurs, throw an exception with an explanatory message
             throw new IllegalArgumentException("The provided color is invalid.");
         }
     }
 
 
-    /**
-     * Sets the color of the status bar icons (such as time, battery, etc.) to either dark or light mode.
-     *
-     * @param dark True to set the status bar icons to dark mode, false to set them to light mode.
-     */
+
     private void setStatusBarIconsDark(boolean dark) {
 
-        // Get the decor view of the window
         View decor = getWindow().getDecorView();
 
-        // Set the system UI visibility based on the provided mode
         if (dark) {
 
-            // Set status bar icons to dark mode
             decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         } else {
 
-            // Set status bar icons to light mode
             decor.setSystemUiVisibility(0);
         }
     }

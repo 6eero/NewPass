@@ -1,4 +1,4 @@
-package com.example.newpass;
+package com.example.newpass.Activities;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -15,9 +15,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.newpass.R;
+
 import java.util.Random;
 
-public class GeneratePassword extends AppCompatActivity {
+public class GeneratePasswordActivity extends AppCompatActivity {
 
     private Boolean uppercase = false, number = false, special = false;
     private int lenght = 8;
@@ -59,7 +61,7 @@ public class GeneratePassword extends AppCompatActivity {
 
                 copyToClipboard(textViewPassword.getText().toString());
 
-                Toast.makeText(GeneratePassword.this, "Testo copiato nella clipboard", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GeneratePasswordActivity.this, "Testo copiato nella clipboard", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -138,7 +140,7 @@ public class GeneratePassword extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GeneratePassword.this, MainActivity.class);
+                Intent intent = new Intent(GeneratePasswordActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

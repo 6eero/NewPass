@@ -1,9 +1,8 @@
-package com.example.newpass;
+package com.example.newpass.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.newpass.R;
+import com.example.newpass.Activities.UpdateActivity;
 
 import java.util.ArrayList;
 
@@ -22,7 +24,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Activity activity;
     private String tw, name, email;
 
-    CustomAdapter(Activity activity, Context context, ArrayList row_id, ArrayList row_name, ArrayList row_email, ArrayList row_password) {
+    public CustomAdapter(Activity activity, Context context, ArrayList row_id, ArrayList row_name, ArrayList row_email, ArrayList row_password) {
         this.activity = activity;
         this.context = context;
         this.row_id = row_id;
