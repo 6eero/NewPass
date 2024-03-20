@@ -54,8 +54,8 @@ git clone https://github.com/6eero/NewPass.git
   
 
 ## ⚒️ Todo
-- [ ] Add a login menu to unlock the application.
+- [ ] Fix random crashes with multiple users
+- [ ] Improve the login GUI.
+- [x] Add a login menu to unlock the application.
 - [x] Currently the encryption key and IV vector are hardcoded into the source code. I have to find a way to mask them.
-- [x] Imporve Stability.
-- [x] Improve UI/UX.
 - [x] Add encryption: The app does not currently provide secrecy restrictions on entered passwords.
