@@ -1,6 +1,7 @@
 package com.example.newpass.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
@@ -27,12 +28,7 @@ import java.security.GeneralSecurityException;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText loginTextViewName, loginTextViewPassword;
-    private TextView welcomeTextView, registerTxt;
-    private ImageButton buttonLogin, buttonRegister;
-    private ImageView backgroundInputboxName, backgroundInputboxPassword;
     private EncryptedSharedPreferences sharedPreferences;
-    private Context context;
-    private MasterKey masterKey;
 
 
     @SuppressLint("SetTextI18n")
@@ -40,22 +36,20 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        changeStatusBarColor(R.color.background_primary);
-        setStatusBarIconsDark(false);
+        changeBarsColor(R.color.background_primary);
 
         loginTextViewName = findViewById(R.id.login_tw_name);
         loginTextViewPassword = findViewById(R.id.login_tw_password);
-        welcomeTextView = findViewById(R.id.welcome_tw);
-        buttonLogin = findViewById(R.id.login_button);
-        buttonRegister = findViewById(R.id.register_button);
-        backgroundInputboxName = findViewById(R.id.background_inputbox_1);
-        backgroundInputboxPassword = findViewById(R.id.background_inputbox_2);
-        registerTxt = findViewById(R.id.register_txt);
+        TextView welcomeTextView = findViewById(R.id.welcome_tw);
+        ImageButton buttonLogin = findViewById(R.id.login_button);
+        ImageButton buttonRegister = findViewById(R.id.register_button);
+        ImageView backgroundInputboxName = findViewById(R.id.background_inputbox_1);
+        TextView registerTxt = findViewById(R.id.register_txt);
 
-        context = this;
+        Context context = this;
 
         try {
-            masterKey = new MasterKey.Builder(context)
+            MasterKey masterKey = new MasterKey.Builder(context)
                     .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
                     .build();
 
@@ -79,42 +73,51 @@ public class LoginActivity extends AppCompatActivity {
 
         } else {
             Log.i("2354325", "User found: name: " + name + " password: " + password);
-            welcomeTextView.setText("Welcome\n" + name + "!");
+            welcomeTextView.setText("Welcome back\n" + name + "!");
             buttonRegister.setVisibility(View.GONE);
             loginTextViewName.setVisibility(View.GONE);
             backgroundInputboxName.setVisibility(View.GONE);
             registerTxt.setVisibility(View.GONE);
         }
 
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginUser();
-            }
-        });
+        buttonLogin.setOnClickListener(v -> loginUser());
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    createUser();
-                } catch (GeneralSecurityException | IOException e) {
-                    throw new RuntimeException(e);
-                }
+        buttonRegister.setOnClickListener(v -> {
+            try {
+                createUser();
+            } catch (GeneralSecurityException | IOException e) {
+                throw new RuntimeException(e);
             }
         });
     }
 
     private void createUser() throws GeneralSecurityException, IOException {
+
         String name = loginTextViewName.getText().toString();
         String password = loginTextViewPassword.getText().toString();
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("password", password);
-        editor.putString("name", name);
-        editor.apply();
+        if (name.length() > 3 && password.length() > 3) {
 
-        Toast.makeText(this, "Utente creato: " + name, Toast.LENGTH_SHORT).show();
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("password", password);
+            editor.putString("name", name);
+            editor.apply();
+
+            Toast.makeText(this, "User " + name + " created", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+            String savedPasswordSharedPreferences = sharedPreferences.getString("password", "");
+            StringUtility.setSharedString(savedPasswordSharedPreferences);
+
+            startActivity(intent);
+        } else {
+
+            if (name.length() <= 3)
+                Toast.makeText(this, "username must be at least 4 characters!", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "password must be at least 4 characters!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void loginUser() {
@@ -128,42 +131,29 @@ public class LoginActivity extends AppCompatActivity {
 
         if (savedPasswordSharedPreferences.equals(password)) {
 
-            Toast.makeText(this, "Accesso effettuato per: " + name, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Login done for: " + name, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
             StringUtility.setSharedString(savedPasswordSharedPreferences);
 
             startActivity(intent);
         } else {
-            Toast.makeText(this, "Accesso non riuscito", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Access Denied", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void changeStatusBarColor(int color) {
+    private void changeBarsColor(int color) {
+
         try {
-
             Window window = getWindow();
-
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-            window.setStatusBarColor(getResources().getColor(color));
-            window.setNavigationBarColor(getResources().getColor(color));
-        } catch (IllegalArgumentException e) {
-
-            throw new IllegalArgumentException("The provided color is invalid.");
-        }
-    }
-
-    private void setStatusBarIconsDark(boolean dark) {
-
-        View decor = getWindow().getDecorView();
-
-        if (dark) {
-
-            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        } else {
-
+            View decor = getWindow().getDecorView();
             decor.setSystemUiVisibility(0);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, (color)));
+            window.setNavigationBarColor(ContextCompat.getColor(this, (color)));
+
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("The provided color is invalid.");
         }
     }
 }

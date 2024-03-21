@@ -24,45 +24,39 @@ public class EncryptionHelper {
      * @param plainText The plaintext string to be encrypted.
      * @return A Base64-encoded string containing the encrypted data concatenated with the initialization vector (IV),
      *         or null if an error occurs during encryption.
-     * @throws Exception If an error occurs during the encryption process.
      */
-    public static String encrypt(String plainText) throws Exception {
+    public static String encrypt(String plainText) {
 
         try {
             // Get AES key
             SecretKey secretKey = getOrCreateAESKey();
 
             if (secretKey == null) {
-                Log.e("4950734", "Errore nell'ottenere la chiave AES");
+                Log.e("4950734", "Failed to retrieve the AES key");
                 return null;
             }
 
-            // Initialize the AES cipher with CBC mode and PKCS7Padding
             Cipher cipher = Cipher.getInstance(MODE);
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
-            // Generate a random IV
             byte[] iv = cipher.getIV();
 
-            // Encrypt the string
             byte[] encryptedBytes = cipher.doFinal(plainText.getBytes());
 
-            // Concatenate IV and encrypted data
             byte[] ivAndEncryptedBytes = new byte[iv.length + encryptedBytes.length];
             System.arraycopy(iv, 0, ivAndEncryptedBytes, 0, iv.length);
             System.arraycopy(encryptedBytes, 0, ivAndEncryptedBytes, iv.length, encryptedBytes.length);
 
-            Log.i("4950734", "---------------- CIFRATURA ----------------");
+            Log.i("4950734", "---------------- Encryption ----------------");
             Log.i("4950734","plain  text:   " + plainText);
             Log.i("4950734","KEY:           " + secretKey);
             Log.i("4950734","IV:            " + Arrays.toString(Arrays.copyOfRange(ivAndEncryptedBytes, 0, 16)));
             Log.i("4950734","cipher text:   " + Base64.encodeToString(ivAndEncryptedBytes, Base64.DEFAULT));
 
-            // Encode the result in Base64
             return Base64.encodeToString(ivAndEncryptedBytes, Base64.DEFAULT);
 
         } catch (Exception e) {
-            Log.e("4950734", "Errore durante la cifratura: " + e.getMessage());
+            Log.e("4950734", "Error during encryption: " + e.getMessage());
             return null;
         }
     }
@@ -72,48 +66,42 @@ public class EncryptionHelper {
      *
      * @param cipherText It must be in the form IV + encrypted_text. It will be decrypted with the IV
      * @return The decrypted string, or null if an error occurs during the decryption process.
-     * @throws Exception If an error occurs during the decryption process.
      */
-    public static String decrypt(String cipherText) throws Exception {
+    public static String decrypt(String cipherText) {
         try {
-            // Get AES key
+
             SecretKey secretKey = getOrCreateAESKey();
 
             if (secretKey == null) {
-                Log.e("4950734", "Errore nell'ottenere la chiave AES");
+                Log.e("4950734", "Failed to retrieve the AES key");
                 return null;
             }
 
-            Log.i("4950734", "Chiave ottenuta per la decifratura: " + secretKey);
+            Log.i("4950734", "Decryption key obtained successfully: " + secretKey);
 
-            // Decode the Base64-encrypted string
             byte[] ivAndEncryptedBytes = Base64.decode(cipherText, Base64.DEFAULT);
 
-            // Get the IV vector used for encryption from the first 16 bytes of cipher text
             byte[] iv = Arrays.copyOfRange(ivAndEncryptedBytes, 0, 16);
             IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
 
-            // Initialize the AES cipher with CBC mode
             Cipher cipher = Cipher.getInstance(MODE);
             cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
 
-            // Decrypt the string
             byte[] decryptedBytes = cipher.doFinal(ivAndEncryptedBytes);
 
-            // Separate IV and plaintext and save plaintext in a variable
+
             String plainText = new String(Arrays.copyOfRange(decryptedBytes, 16, decryptedBytes.length));
 
-            Log.i("4950734", "---------------- DECIFRATURA ----------------");
+            Log.i("4950734", "---------------- Decryption ----------------");
             Log.i("4950734","cipher text:   " + cipherText);
             Log.i("4950734","KEY:           " + secretKey);
             Log.i("4950734","IV:            " + Arrays.toString(iv));
             Log.i("4950734","plain text:    " + plainText);
 
-            // returns the decrypted string
             return plainText;
 
         } catch (Exception e) {
-            Log.e("4950734", "Errore durante la decifratura: " + e.getMessage());
+            Log.e("4950734", "Error during decryption: " + e.getMessage());
             return null;
         }
     }
@@ -126,20 +114,19 @@ public class EncryptionHelper {
      */
     private static SecretKey getOrCreateAESKey() {
         try {
-            // Load the KeyStore
+
             KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
             keyStore.load(null);
 
-            // Check if an AES key already exists in the KeyStore
             if (keyStore.containsAlias(KEY_ALIAS)) {
-                // Retrieve the existing AES key from the KeyStore
+
                 KeyStore.SecretKeyEntry secretKeyEntry = (KeyStore.SecretKeyEntry) keyStore.getEntry(KEY_ALIAS, null);
 
-                Log.w("4950734", "Chiave ottenuta dal Key Stone");
+                Log.w("4950734", "Key obtained successfully form key store:");
 
                 return secretKeyEntry.getSecretKey();
             } else {
-                // If it doesn't exist, generate a new AES key and store it in the KeyStore
+
                 KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
                 KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(KEY_ALIAS, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
                         .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
@@ -147,12 +134,12 @@ public class EncryptionHelper {
                         .setKeySize(128);
                 keyGenerator.init(builder.build());
 
-                Log.w("4950734", "La chiave non esiste ne creo una nuova");
+                Log.w("4950734", "The key doesn't exist, I'll create a new one");
 
                 return keyGenerator.generateKey();
             }
         } catch (Exception e) {
-            Log.e("4950734", "Errore durante il recupero/creazione della chiave AES: " + e.getMessage());
+            Log.e("4950734", "Error getting/creating AES key: " + e.getMessage());
             return null;
         }
     }

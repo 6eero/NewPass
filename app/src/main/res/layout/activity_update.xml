@@ -109,6 +109,19 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
+        android:id="@+id/copy_button"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@android:color/transparent"
+        android:padding="1dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btn_copy"
+        app:layout_constraintEnd_toEndOf="@+id/background_inputbox_3"
+        app:layout_constraintTop_toTopOf="@+id/background_inputbox_3" />
+
+    <ImageButton
         android:id="@+id/delete_button"
         android:layout_width="160dp"
         android:layout_height="70dp"

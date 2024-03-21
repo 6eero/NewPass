@@ -1,5 +1,6 @@
 package com.example.newpass.Adapters;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,12 +20,14 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    private Context context;
-    private ArrayList row_id, row_name, row_email, row_password;
-    private Activity activity;
-    private String tw, name, email;
+    private final Context context;
+    private final ArrayList<String> row_id;
+    private final ArrayList<String> row_name;
+    private final ArrayList<String> row_email;
+    private final ArrayList<String> row_password;
+    private final Activity activity;
 
-    public CustomAdapter(Activity activity, Context context, ArrayList row_id, ArrayList row_name, ArrayList row_email, ArrayList row_password) {
+    public CustomAdapter(Activity activity, Context context, ArrayList<String> row_id, ArrayList<String> row_name, ArrayList<String> row_email, ArrayList<String> row_password) {
         this.activity = activity;
         this.context = context;
         this.row_id = row_id;
@@ -48,11 +51,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
-        name = String.valueOf(row_name.get(holder.getAdapterPosition()));
-        email = String.valueOf(row_email.get(holder.getAdapterPosition()));
+        String name = String.valueOf(row_name.get(holder.getAdapterPosition()));
+        String email = String.valueOf(row_email.get(holder.getAdapterPosition()));
 
+        String tw;
         if (name.length() > 2) {
             tw = name.substring(0, 2);
         } else {
@@ -63,16 +67,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.row_name_txt.setText(name);
         holder.row_email_txt.setText(email);
 
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("entry", String.valueOf(row_id.get(position)));
-                intent.putExtra("name", String.valueOf(row_name.get(position)));
-                intent.putExtra("email", String.valueOf(row_email.get(position)));
-                intent.putExtra("password", String.valueOf(row_password.get(position)));   // change this to change the displayed password in the update activity
-                activity.startActivityForResult(intent, 1);
-            }
+        holder.mainLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(context, UpdateActivity.class);
+            intent.putExtra("entry", String.valueOf(row_id.get(position)));
+            intent.putExtra("name", String.valueOf(row_name.get(position)));
+            intent.putExtra("email", String.valueOf(row_email.get(position)));
+            intent.putExtra("password", String.valueOf(row_password.get(position)));   // change this to change the displayed password in the update activity
+            activity.startActivityForResult(intent, 1);
         });
     }
 
@@ -85,18 +86,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return row_id.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView row_id_txt, row_name_txt, row_email_txt, row_password_txt, row_tw_txt;
+        TextView row_name_txt, row_email_txt, row_tw_txt;
         LinearLayout mainLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            //row_id_txt = itemView.findViewById(R.id.row_id_txt);
+
             row_name_txt = itemView.findViewById(R.id.row_name_txt);
             row_tw_txt = itemView.findViewById(R.id.row_tw_txt);
             row_email_txt = itemView.findViewById(R.id.row_email_txt);
-            //row_password_txt = itemView.findViewById(R.id.row_password_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }

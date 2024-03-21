@@ -2,6 +2,7 @@ package com.example.newpass.Activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,12 +26,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton buttonGenerate, buttonAdd;
-    private TextView count, no_data;
-    private RecyclerView recyclerView;
+    private TextView no_data;
     private DatabaseHelper myDB;
     private ArrayList<String> row_id, row_name, row_email, row_password;
-    private CustomAdapter customAdapter;
     private ImageView empty_imageview;
 
 
@@ -39,13 +37,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        changeStatusBarColor(R.color.background_primary);
-        setStatusBarIconsDark(false);
+        changeBarsColor(R.color.background_primary);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        buttonGenerate = findViewById(R.id.button_Generate);
-        buttonAdd = findViewById(R.id.button_Add);
-        count = findViewById(R.id.textView_count);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        ImageButton buttonGenerate = findViewById(R.id.button_Generate);
+        ImageButton buttonAdd = findViewById(R.id.button_Add);
+        TextView count = findViewById(R.id.textView_count);
         empty_imageview = findViewById(R.id.empty_imageview);
         no_data = findViewById(R.id.no_data);
 
@@ -57,32 +54,21 @@ public class MainActivity extends AppCompatActivity {
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this, this, row_id, row_name, row_email, row_password);
+        CustomAdapter customAdapter = new CustomAdapter(MainActivity.this, this, row_id, row_name, row_email, row_password);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        count.setText("["+String.valueOf(customAdapter.getItemCount())+"]");
+        count.setText("["+ customAdapter.getItemCount() +"]");
 
-        buttonGenerate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GeneratePasswordActivity.class);
-                startActivity(intent);
-            }
+        buttonGenerate.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GeneratePasswordActivity.class);
+            startActivity(intent);
         });
 
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);
-            }
+        buttonAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddActivity.class);
+            startActivity(intent);
         });
-    }
-
-    public String getKeyForDBEncryption() {
-        Intent intent = getIntent();
-        return intent.getStringExtra("saved_password");
     }
 
     @Override
@@ -92,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         }
     }
-
 
     void storeDataInArrays() {
 
@@ -117,32 +102,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void changeBarsColor(int color) {
 
-    private void changeStatusBarColor(int color) {
         try {
-
             Window window = getWindow();
-
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-            window.setStatusBarColor(getResources().getColor(color));
-            window.setNavigationBarColor(getResources().getColor(color));
-        } catch (IllegalArgumentException e) {
-
-            throw new IllegalArgumentException("The provided color is invalid.");
-        }
-    }
-
-    private void setStatusBarIconsDark(boolean dark) {
-
-        View decor = getWindow().getDecorView();
-
-        if (dark) {
-
-            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        } else {
-
+            View decor = getWindow().getDecorView();
             decor.setSystemUiVisibility(0);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, (color)));
+            window.setNavigationBarColor(ContextCompat.getColor(this, (color)));
+
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("The provided color is invalid.");
         }
     }
 

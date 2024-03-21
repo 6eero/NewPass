@@ -9,13 +9,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.newpass.Activities.MainActivity;
 import com.example.newpass.Activities.StringUtility;
 import com.example.newpass.Encryption.EncryptionHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private Context context;
+    private final Context context;
     private static final String DATABASE_NAME = "Password.db";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "my_password_record";
@@ -27,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        assert context != null;
         SQLiteDatabase.loadLibs(context);
         this.context = context;
     }
@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param email     The email of the entry.
      * @param password  The password of the entry (it will be encrypted before being inserted into the database)
      */
-    public void addEntry(String name, String email, String password) throws Exception {
+    public void addEntry(String name, String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase(KEY_ENCRYPTION);
         ContentValues cv = new ContentValues();
 

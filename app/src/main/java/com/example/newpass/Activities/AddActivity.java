@@ -1,6 +1,7 @@
 package com.example.newpass.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,23 +18,19 @@ import com.example.newpass.R;
 public class AddActivity extends AppCompatActivity {
 
     private EditText name_input, email_input, password_input;
-    private ImageButton back_button, add_button;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-
-        // Change the color of the status bar
-        changeStatusBarColor(R.color.background_primary);
-        setStatusBarIconsDark(false);
+        changeBarsColor(R.color.background_primary);
 
         name_input = findViewById(R.id.name_input);
         email_input = findViewById(R.id.email_input);
         password_input = findViewById(R.id.password_input);
-        add_button = findViewById(R.id.add_button);
-        back_button = findViewById(R.id.btn_back);
+        ImageButton add_button = findViewById(R.id.add_button);
+        ImageButton back_button = findViewById(R.id.btn_back);
 
         add_button.setOnClickListener(new View.OnClickListener() {
 
@@ -57,43 +54,25 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AddActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        back_button.setOnClickListener(v -> {
+            Intent intent = new Intent(AddActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
+    private void changeBarsColor(int color) {
 
-    private void changeStatusBarColor(int color) {
         try {
-
             Window window = getWindow();
-
+            View decor = getWindow().getDecorView();
+            decor.setSystemUiVisibility(0);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, (color)));
+            window.setNavigationBarColor(ContextCompat.getColor(this, (color)));
 
-            window.setStatusBarColor(getResources().getColor(color));
-            window.setNavigationBarColor(getResources().getColor(color));
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("The provided color is invalid.");
-        }
-    }
-
-
-
-    private void setStatusBarIconsDark(boolean dark) {
-
-        View decor = getWindow().getDecorView();
-
-        if (dark) {
-
-            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        } else {
-
-            decor.setSystemUiVisibility(0);
         }
     }
 }

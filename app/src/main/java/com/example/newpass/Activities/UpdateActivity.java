@@ -2,8 +2,9 @@ package com.example.newpass.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 
 import com.example.newpass.Database.DatabaseHelper;
 import com.example.newpass.Encryption.EncryptionHelper;
@@ -21,22 +24,20 @@ public class UpdateActivity extends AppCompatActivity {
 
     private EditText name_input, email_input, password_input;
     private String entry, name, email, password;
-    private ImageButton back_button, update_button, delete_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
-
-        changeStatusBarColor(R.color.background_primary);
-        setStatusBarIconsDark(false);
+        changeBarsColor(R.color.background_primary);
 
         name_input = findViewById(R.id.name_input2);
         email_input = findViewById(R.id.email_input2);
         password_input = findViewById(R.id.password_input2);
-        update_button = findViewById(R.id.update_button);
-        back_button = findViewById(R.id.btn_back);
-        delete_button = findViewById(R.id.delete_button);
+        ImageButton update_button = findViewById(R.id.update_button);
+        ImageButton back_button = findViewById(R.id.btn_back);
+        ImageButton delete_button = findViewById(R.id.delete_button);
+        ImageButton copy_button = findViewById(R.id.copy_button);
 
         try {
             getAndSetIntentData();
@@ -44,41 +45,34 @@ public class UpdateActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        update_button.setOnClickListener(new View.OnClickListener() {
+        update_button.setOnClickListener(view -> {
 
-            @Override
-            public void onClick(View view) {
-                //And only then we call this
-                DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this);
-                name = name_input.getText().toString().trim();
-                email = email_input.getText().toString().trim();
-                password = password_input.getText().toString().trim();
+            DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this);
+            name = name_input.getText().toString().trim();
+            email = email_input.getText().toString().trim();
+            password = password_input.getText().toString().trim();
 
-                try {
-                    String encryptedPassword = EncryptionHelper.encrypt(password);
-                    myDB.updateData(entry, name, email, encryptedPassword);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+            try {
+                String encryptedPassword = EncryptionHelper.encrypt(password);
+                myDB.updateData(entry, name, email, encryptedPassword);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         });
 
-        back_button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        back_button.setOnClickListener(v -> {
+            Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        delete_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                confirmDialog();
-            }
+        delete_button.setOnClickListener(v -> confirmDialog());
+        copy_button.setOnClickListener(v -> {
+            copyToClipboard(password_input.getText().toString());
+
+            Toast.makeText(UpdateActivity.this, "Text copied to the clipboard", Toast.LENGTH_SHORT).show();
         });
+
     }
 
     /**
@@ -86,9 +80,8 @@ public class UpdateActivity extends AppCompatActivity {
      * If the intent extras contain entry, name, email, and password data, it sets the values to the input fields.
      * Otherwise, it displays a toast indicating that no data is available.
      *
-     * @throws Exception If an error occurs during the decryption process.
      */
-    void getAndSetIntentData() throws Exception {
+    void getAndSetIntentData() {
         if(getIntent().hasExtra("entry") && getIntent().hasExtra("name") &&
                 getIntent().hasExtra("email") && getIntent().hasExtra("password")){
 
@@ -117,47 +110,40 @@ public class UpdateActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + name + " ?");
         builder.setMessage("Are you sure you want to delete " + name + " ?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this);
-                myDB.deleteOneRow(entry);
-                finish();
-            }
+        builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+            DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this);
+            myDB.deleteOneRow(entry);
+            finish();
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        builder.setNegativeButton("No", (dialogInterface, i) -> {
 
-            }
         });
         builder.create().show();
     }
 
-    private void changeStatusBarColor(int color) {
-        try {
+    /**
+     * Method for copying text to the clipboard
+     * @param text text to copy to the clipboard
+     */
+    private void copyToClipboard(String text) {
 
-            Window window = getWindow();
-
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(color));
-            window.setNavigationBarColor(getResources().getColor(color));
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("The provided color is invalid.");
-        }
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("Text copied to the clipboard", text);
+        clipboardManager.setPrimaryClip(clipData);
     }
 
+    private void changeBarsColor(int color) {
 
-    private void setStatusBarIconsDark(boolean dark) {
-
-        View decor = getWindow().getDecorView();
-
-        if (dark) {
-
-            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        } else {
-
+        try {
+            Window window = getWindow();
+            View decor = getWindow().getDecorView();
             decor.setSystemUiVisibility(0);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, (color)));
+            window.setNavigationBarColor(ContextCompat.getColor(this, (color)));
+
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("The provided color is invalid.");
         }
     }
 }
