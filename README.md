@@ -42,7 +42,7 @@ NewPass is a secure password management application designed to generate and sto
 The project is under **very active** development.
 
 
-## ⛏️ Manual Installation
+## ⛏️ Manual Installation - apk coming soon...
 To use NewPass, follow these steps:
 1. Clone this repository.
 ```
@@ -54,8 +54,8 @@ git clone https://github.com/6eero/NewPass.git
   
 
 ## ⚒️ Todo
-- [ ] Fix random crashes with multiple users
-- [ ] Improve the login GUI.
+- [x] Fix random crashes with multiple users
+- [x] Improve the login GUI.
 - [x] Add a login menu to unlock the application.
 - [x] Currently the encryption key and IV vector are hardcoded into the source code. I have to find a way to mask them.
 - [x] Add encryption: The app does not currently provide secrecy restrictions on entered passwords.
