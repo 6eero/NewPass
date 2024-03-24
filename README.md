@@ -34,7 +34,7 @@ NewPass is a secure password management application designed to generate and sto
 
 
 ## ⬇️ Installation
-To use NewPass, instalkle the apk from [release](https://github.com/6eero/NewPass/releases)
+To use NewPass, install the apk from [release](https://github.com/6eero/NewPass/releases)
 
 ...or follow these steps:
 1. Clone this repository.
