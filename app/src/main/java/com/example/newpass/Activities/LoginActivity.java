@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (savedPasswordSharedPreferences.equals(password)) {
 
-            Toast.makeText(this, "Login done for: " + name, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Login done for: " + savedNameSharedPreferences, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
             StringUtility.setSharedString(savedPasswordSharedPreferences);
