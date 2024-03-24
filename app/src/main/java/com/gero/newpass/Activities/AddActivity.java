@@ -1,4 +1,4 @@
-package com.example.newpass.Activities;
+package com.gero.newpass.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -12,8 +12,8 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.newpass.Database.DatabaseHelper;
-import com.example.newpass.R;
+import com.gero.newpass.Database.DatabaseHelper;
+import com.gero.newpass.R;
 
 public class AddActivity extends AppCompatActivity {
 

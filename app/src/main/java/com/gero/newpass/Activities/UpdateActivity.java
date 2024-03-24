@@ -1,4 +1,4 @@
-package com.example.newpass.Activities;
+package com.gero.newpass.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +16,9 @@ import android.widget.Toast;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 
-import com.example.newpass.Database.DatabaseHelper;
-import com.example.newpass.Encryption.EncryptionHelper;
-import com.example.newpass.R;
+import com.gero.newpass.Database.DatabaseHelper;
+import com.gero.newpass.Encryption.EncryptionHelper;
+import com.gero.newpass.R;
 
 public class UpdateActivity extends AppCompatActivity {
 

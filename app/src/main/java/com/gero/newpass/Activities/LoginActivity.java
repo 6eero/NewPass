@@ -1,4 +1,4 @@
-package com.example.newpass.Activities;
+package com.gero.newpass.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.newpass.R;
+import com.gero.newpass.R;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;

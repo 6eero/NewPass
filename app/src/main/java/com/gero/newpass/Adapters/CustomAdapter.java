@@ -1,4 +1,4 @@
-package com.example.newpass.Adapters;
+package com.gero.newpass.Adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,8 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newpass.R;
-import com.example.newpass.Activities.UpdateActivity;
+import com.gero.newpass.R;
+import com.gero.newpass.Activities.UpdateActivity;
 
 import java.util.ArrayList;
 

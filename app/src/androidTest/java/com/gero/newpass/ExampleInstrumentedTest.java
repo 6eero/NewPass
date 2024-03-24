@@ -1,4 +1,4 @@
-package com.example.newpass;
+package com.gero.newpass;
 
 import android.content.Context;
 

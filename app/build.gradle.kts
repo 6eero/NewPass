@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.newpass"
+    namespace = "com.gero.newpass"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.newpass"
+        applicationId = "com.gero.newpass"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

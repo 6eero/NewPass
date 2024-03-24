@@ -1,4 +1,4 @@
-package com.example.newpass.Activities;
+package com.gero.newpass.Activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,9 +17,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.newpass.Adapters.CustomAdapter;
-import com.example.newpass.Database.DatabaseHelper;
-import com.example.newpass.R;
+import com.gero.newpass.Adapters.CustomAdapter;
+import com.gero.newpass.Database.DatabaseHelper;
+import com.gero.newpass.R;
 
 import java.util.ArrayList;
 

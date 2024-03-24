@@ -1,4 +1,4 @@
-package com.example.newpass.Activities;
+package com.gero.newpass.Activities;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
@@ -17,7 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.example.newpass.R;
+import com.gero.newpass.R;
 
 import java.util.Random;
 

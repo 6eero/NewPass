@@ -1,4 +1,4 @@
-package com.example.newpass.Database;
+package com.gero.newpass.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.newpass.Activities.StringUtility;
-import com.example.newpass.Encryption.EncryptionHelper;
+import com.gero.newpass.Activities.StringUtility;
+import com.gero.newpass.Encryption.EncryptionHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
