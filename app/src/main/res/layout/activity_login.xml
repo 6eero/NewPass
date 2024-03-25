@@ -11,22 +11,21 @@
         android:id="@+id/background_inputbox_1"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/background_inputbox"
+        app:layout_constraintBottom_toTopOf="@+id/background_inputbox_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_tw">
-    </ImageView>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/background_inputbox_2"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:layout_marginTop="210dp"
+        android:layout_marginBottom="160dp"
         android:src="@drawable/background_inputbox"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_tw" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/login_tw_name"
@@ -48,19 +47,31 @@
 
 
     <TextView
-        android:id="@+id/welcome_tw"
+        android:id="@+id/welcome_register_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginBottom="90dp"
+        android:fontFamily="@font/jetbrainsmonobold"
+        android:text="Welcome to\nNewPass!"
+        android:textColor="@color/text_primary"
+        android:gravity="center_horizontal"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/background_inputbox_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/welcome_login_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/jetbrainsmonobold"
-        android:text="testo\nbenvenuto"
+        android:text="Welcome back\nUser!"
         android:textColor="@color/text_primary"
         android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/login_tw_password"
@@ -83,53 +94,55 @@
 
 
     <ImageButton
-        android:id="@+id/register_button"
-        android:layout_width="160dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="40dp"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="1dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/register_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="[Register]"
-        android:textColor="@color/black"
-        android:fontFamily="@font/jetbrainsmonoregular"
-        app:layout_constraintBottom_toBottomOf="@+id/register_button"
-        app:layout_constraintEnd_toEndOf="@+id/register_button"
-        app:layout_constraintStart_toStartOf="@+id/register_button"
-        app:layout_constraintTop_toTopOf="@+id/register_button" />
-
-    <ImageButton
         android:id="@+id/login_button"
-        android:layout_width="160dp"
-        android:layout_height="70dp"
+        android:layout_width="346dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="40dp"
         android:backgroundTint="@android:color/transparent"
         android:padding="1dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/btn2"
+        android:src="@drawable/btn_login"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/register_button"
+        android:layout_width="346dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@android:color/transparent"
+        android:padding="1dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btn_create_account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/logo_register"
+        android:layout_width="121dp"
+        android:layout_height="135dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_register_tw"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/logo_login"
+        android:layout_width="225dp"
+        android:layout_height="454dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/logo_login"
+        app:layout_constraintBottom_toTopOf="@+id/background_inputbox_2"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="[Login]"
-        android:textColor="@color/text_primary"
-        android:fontFamily="@font/jetbrainsmonoregular"
-        app:layout_constraintBottom_toBottomOf="@+id/login_button"
-        app:layout_constraintEnd_toEndOf="@+id/login_button"
-        app:layout_constraintStart_toStartOf="@+id/login_button"
-        app:layout_constraintTop_toTopOf="@+id/login_button" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

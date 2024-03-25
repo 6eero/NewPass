@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -40,13 +41,19 @@ public class LoginActivity extends AppCompatActivity {
 
         loginTextViewName = findViewById(R.id.login_tw_name);
         loginTextViewPassword = findViewById(R.id.login_tw_password);
-        TextView welcomeTextView = findViewById(R.id.welcome_tw);
+        TextView welcomeRegisterTextView = findViewById(R.id.welcome_register_tw);
+        TextView welcomeLoginTextView = findViewById(R.id.welcome_login_tw);
         ImageButton buttonLogin = findViewById(R.id.login_button);
         ImageButton buttonRegister = findViewById(R.id.register_button);
         ImageView backgroundInputboxName = findViewById(R.id.background_inputbox_1);
-        TextView registerTxt = findViewById(R.id.register_txt);
+        ImageView logo = findViewById(R.id.logo_register);
+        ImageView logoLogin = findViewById((R.id.logo_login));
 
         Context context = this;
+
+        buttonLogin.setVisibility(View.GONE);
+        welcomeLoginTextView.setVisibility(View.GONE);
+        logoLogin.setVisibility(View.GONE);
 
         try {
             MasterKey masterKey = new MasterKey.Builder(context)
@@ -67,17 +74,23 @@ public class LoginActivity extends AppCompatActivity {
         String name = sharedPreferences.getString("name", "");
         String password = sharedPreferences.getString("password", "");
 
-        if (password.equals("") && name.equals("")){
+        if (password.isEmpty() && name.isEmpty()){
             Log.i("2354325", "user not found");
-            welcomeTextView.setText("Welcome\nUser!");
 
         } else {
             Log.i("2354325", "User found: name: " + name + " password: " + password);
-            welcomeTextView.setText("Welcome back\n" + name + "!");
             buttonRegister.setVisibility(View.GONE);
+            logo.setVisibility(View.GONE);
+            welcomeRegisterTextView.setVisibility(View.GONE);
             loginTextViewName.setVisibility(View.GONE);
             backgroundInputboxName.setVisibility(View.GONE);
-            registerTxt.setVisibility(View.GONE);
+
+            buttonLogin.setVisibility(View.VISIBLE);
+            logoLogin.setVisibility(View.VISIBLE);
+            welcomeLoginTextView.setVisibility(View.VISIBLE);
+
+            String next = "<font color='"+ String.format("#%06X", 0xFFFFFF &  ContextCompat.getColor(context, R.color.accent)) +"'>"+ name +"</font>";
+            welcomeLoginTextView.setText(Html.fromHtml("Welcome back<br>" + next + "!", Html.FROM_HTML_MODE_LEGACY));
         }
 
         buttonLogin.setOnClickListener(v -> loginUser());
@@ -96,7 +109,12 @@ public class LoginActivity extends AppCompatActivity {
         String name = loginTextViewName.getText().toString();
         String password = loginTextViewPassword.getText().toString();
 
-        if (name.length() > 3 && password.length() > 3) {
+        if (
+                name.length() >= 4 &&
+                name.length() <= 10 &&
+                password.length() >= 4 &&
+                password.length() <= 10
+        ) {
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("password", password);
@@ -113,10 +131,18 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
 
-            if (name.length() <= 3)
+            if (name.length() <= 3) {
                 Toast.makeText(this, "username must be at least 4 characters!", Toast.LENGTH_SHORT).show();
-            else
+            }
+            else if ((name.length() > 10)) {
+                Toast.makeText(this, "username must contain a maximum of 10 characters!", Toast.LENGTH_SHORT).show();
+            }
+            else if ((password.length() <= 3)) {
                 Toast.makeText(this, "password must be at least 4 characters!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "password must contain a maximum of 10 characters!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

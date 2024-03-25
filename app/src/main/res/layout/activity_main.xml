@@ -11,7 +11,7 @@
         android:id="@+id/textView_Create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/jetbrainsmonobold"
         android:text="Saved\nPassword"
