@@ -1,28 +1,26 @@
 <div align="center">
-  <p>
-    <h1>
-      <a href="https://github.com/6eero/NewPass">
-        <img src="https://github.com/6eero/NewPass/assets/114809573/6d03c7db-c705-42dc-ae4c-1fd0e47ceb15" width="50" title="NewPass" />
-      </a>
-      <br />
-      NewPass
-    </h1>
-    <h4>Create a strong password for your digital realm.</h4>
-    <h4></h4>
-  </p>
-  <p>
-  </p>
+    <img width="200" height="200" style="display: block; border: 1px solid #f5f5f5; border-radius: 9999px;" src="https://github.com/6eero/NewPass/assets/114809573/77aeeea8-5440-433b-8621-2a5b54173896">
 </div>
 
-<p align="right">
-   <img src="https://github.com/6eero/NewPass/assets/114809573/e2a2d540-7f07-4889-bccd-1924a99e5ade" title="UI">
-</p>
+<div align="center">
+    <h1>NewPass</h1>
+</div>
+
+<div align="center">
+    <img alt="GitHub" src="https://img.shields.io/github/license/Ashinch/ReadYou?color=D0BCFF&style=flat-square">
+    <a target="_blank" href="https://github.com/6eero/NewPass/releases">
+        <img alt="Version" src="https://img.shields.io/github/v/release/6eero/NewPass?color=D0BCFF&label=version&style=flat-square">
+    </a>
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/6eero/NewPass?color=D0BCFF&style=flat-square">
+</div>
+
+<br>
 
 <p align="right">
-  <a href="https://opensource.org/license/agpl-v3"><img src="https://img.shields.io/badge/License-AGPL_v3-blue.svg?color=FEED55&style=for-the-badge&label=License&logoColor=0F1511&labelColor=ececec" alt="License: AGPLv3" width="100"></a>
+   <img src="https://github.com/6eero/NewPass/assets/114809573/da89a98d-585b-443f-a2ee-6fbb592fbad5" title="UI">
 </p>
 
-
+<br>
 
 # 📍Intro
 NewPass is a secure password management application designed to generate and store strong passwords locally on your device. With NewPass, you can create highly secure passwords for your accounts and services without the need to remember them.
@@ -38,24 +36,27 @@ NewPass is a secure password management application designed to generate and sto
 - **User-Friendly Interface**: NewPass features an intuitive and user-friendly interface, making it easy to generate, view, and manage your passwords. The app offers convenient options for copying passwords to the clipboard and securely sharing them with other applications.
 
 
-## ⚠️ Disclaimer
-The project is under **very active** development.
+## ⬇️ Download 
+[<img src="https://s1.ax1x.com/2023/01/12/pSu1a36.png" alt="Get it on GitHub" height="80">](https://github.com/6eero/NewPass/releases)
 
 
-## ⛏️ Manual Installation - apk coming soon...
-To use NewPass, follow these steps:
-1. Clone this repository.
+## 🧱 Build
+1. First you need to get the source code of NewPaass.
 ```
 git clone https://github.com/6eero/NewPass.git
 ```
-2. Open the project in Android Studio.
-3. Build and run the app on your Android device or emulator.
+2. Open the project in [Android Studio](https://developer.android.com/studio).
+3. When you click the `▶ Run` button, it will be built automatically.
 4. Launch NewPass.
   
 
 ## ⚒️ Todo
-- [x] Fix random crashes with multiple users
+- [ ] Refactor the application using M3 design rules and Jetpack Compose.
+- [x] Fix random crashes with multiple users.
 - [x] Improve the login GUI.
 - [x] Add a login menu to unlock the application.
 - [x] Currently the encryption key and IV vector are hardcoded into the source code. I have to find a way to mask them.
 - [x] Add encryption: The app does not currently provide secrecy restrictions on entered passwords.
+
+## 📜 License
+GNU GPL v3.0 © [NewPass](https://github.com/6eero/NewPass/blob/master/LICENSE)
