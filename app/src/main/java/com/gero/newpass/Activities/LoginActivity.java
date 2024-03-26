@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gero.newpass.R;
+import com.gero.newpass.databinding.ActivityGeneratePasswordBinding;
+import com.gero.newpass.databinding.ActivityLoginBinding;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -36,18 +38,19 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        com.gero.newpass.databinding.ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         changeBarsColor(R.color.background_primary);
 
-        loginTextViewName = findViewById(R.id.login_tw_name);
-        loginTextViewPassword = findViewById(R.id.login_tw_password);
-        TextView welcomeRegisterTextView = findViewById(R.id.welcome_register_tw);
-        TextView welcomeLoginTextView = findViewById(R.id.welcome_login_tw);
-        ImageButton buttonLogin = findViewById(R.id.login_button);
-        ImageButton buttonRegister = findViewById(R.id.register_button);
-        ImageView backgroundInputboxName = findViewById(R.id.background_inputbox_1);
-        ImageView logo = findViewById(R.id.logo_register);
-        ImageView logoLogin = findViewById((R.id.logo_login));
+        loginTextViewName = binding.loginTwName;
+        loginTextViewPassword = binding.loginTwPassword;
+        TextView welcomeRegisterTextView = binding.welcomeRegisterTw;
+        TextView welcomeLoginTextView = binding.welcomeLoginTw;
+        ImageButton buttonLogin = binding.loginButton;
+        ImageButton buttonRegister = binding.registerButton;
+        ImageView backgroundInputboxName = binding.backgroundInputbox1;
+        ImageView logo = binding.logoRegister;
+        ImageView logoLogin = binding.logoLogin;
 
         Context context = this;
 

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.gero.newpass.Adapters.CustomAdapter;
 import com.gero.newpass.Database.DatabaseHelper;
 import com.gero.newpass.R;
+import com.gero.newpass.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
@@ -36,15 +37,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        com.gero.newpass.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         changeBarsColor(R.color.background_primary);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        ImageButton buttonGenerate = findViewById(R.id.button_Generate);
-        ImageButton buttonAdd = findViewById(R.id.button_Add);
-        TextView count = findViewById(R.id.textView_count);
-        empty_imageview = findViewById(R.id.empty_imageview);
-        no_data = findViewById(R.id.no_data);
+        RecyclerView recyclerView = binding.recyclerView;
+        ImageButton buttonGenerate = binding.buttonGenerate;
+        ImageButton buttonAdd = binding.buttonAdd;
+        TextView count = binding.textViewCount;
+        empty_imageview = binding.emptyImageview;
+        no_data = binding.noData;
 
         myDB = new DatabaseHelper(MainActivity.this);
         row_id = new ArrayList<>();

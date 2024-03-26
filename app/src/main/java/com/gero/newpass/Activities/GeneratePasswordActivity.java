@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.gero.newpass.R;
+import com.gero.newpass.databinding.ActivityGeneratePasswordBinding;
 
 import java.util.Random;
 
@@ -33,21 +34,18 @@ public class GeneratePasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generate_password);
+        com.gero.newpass.databinding.ActivityGeneratePasswordBinding binding = ActivityGeneratePasswordBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         changeBarsColor(R.color.background_primary);
 
-        textViewLength = findViewById(R.id.textView_Lenght_Value);
-        textViewPassword = findViewById(R.id.textView_Password);
-
-        ImageButton backButton = findViewById(R.id.btn_back);
-
-        buttonUppercase = findViewById(R.id.button_Uppercase1);
-        buttonNumber = findViewById(R.id.button_Number1);
-        buttonSpecial = findViewById(R.id.button_Special1);
-
-        ImageButton buttonRegenerate = findViewById(R.id.button_Regenerate);
-
-        SeekBar seekBar = findViewById(R.id.seekBar);
+        ImageButton buttonRegenerate = binding.buttonRegenerate;
+        SeekBar seekBar = binding.seekBar;
+        ImageButton backButton = binding.backButton;
+        textViewLength = binding.textViewLenght;
+        textViewPassword = binding.textViewPassword;
+        buttonUppercase = binding.buttonUppercase1;
+        buttonNumber = binding.buttonNumber1;
+        buttonSpecial = binding.buttonSpecial1;
 
 
         textViewLength.setText("["+ length +"]");

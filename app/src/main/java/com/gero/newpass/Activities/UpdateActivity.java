@@ -19,6 +19,7 @@ import android.content.ClipboardManager;
 import com.gero.newpass.Database.DatabaseHelper;
 import com.gero.newpass.Encryption.EncryptionHelper;
 import com.gero.newpass.R;
+import com.gero.newpass.databinding.ActivityUpdateBinding;
 
 public class UpdateActivity extends AppCompatActivity {
 
@@ -28,16 +29,17 @@ public class UpdateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update);
+        com.gero.newpass.databinding.ActivityUpdateBinding binding = ActivityUpdateBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         changeBarsColor(R.color.background_primary);
 
-        name_input = findViewById(R.id.name_input2);
-        email_input = findViewById(R.id.email_input2);
-        password_input = findViewById(R.id.password_input2);
-        ImageButton update_button = findViewById(R.id.update_button);
-        ImageButton back_button = findViewById(R.id.btn_back);
-        ImageButton delete_button = findViewById(R.id.delete_button);
-        ImageButton copy_button = findViewById(R.id.copy_button);
+        name_input = binding.nameInput2;
+        email_input = binding.emailInput2;
+        password_input = binding.passwordInput2;
+        ImageButton update_button = binding.updateButton;
+        ImageButton back_button = binding.backButton;
+        ImageButton delete_button = binding.deleteButton;
+        ImageButton copy_button = binding.copyButton;
 
         try {
             getAndSetIntentData();

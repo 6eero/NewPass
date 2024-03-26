@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.gero.newpass.Database.DatabaseHelper;
 import com.gero.newpass.R;
+import com.gero.newpass.databinding.ActivityAddBinding;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -24,14 +25,15 @@ public class AddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        com.gero.newpass.databinding.ActivityAddBinding binding = ActivityAddBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         changeBarsColor(R.color.background_primary);
 
-        name_input = findViewById(R.id.name_input);
-        email_input = findViewById(R.id.email_input);
-        password_input = findViewById(R.id.password_input);
-        ImageButton add_button = findViewById(R.id.add_button);
-        ImageButton back_button = findViewById(R.id.btn_back);
+        name_input = binding.nameInput;
+        email_input = binding.emailInput;
+        password_input = binding.passwordInput;
+        ImageButton add_button = binding.addButton;
+        ImageButton back_button = binding.backButton;
 
         add_button.setOnClickListener(v -> {
             DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
