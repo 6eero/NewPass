@@ -39,7 +39,7 @@ public class AddActivity extends AppCompatActivity {
         add_button.setOnClickListener(v -> {
             DatabaseServiceLocator.init(getApplicationContext());
             DatabaseHelper myDB = DatabaseServiceLocator.getDatabaseHelper();
-
+            //DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
             try {
                 String name = name_input.getText().toString().trim();
                 String email = email_input.getText().toString().trim();
