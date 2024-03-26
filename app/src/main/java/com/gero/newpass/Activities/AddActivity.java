@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.gero.newpass.Database.DatabaseHelper;
 import com.gero.newpass.R;
@@ -32,25 +33,39 @@ public class AddActivity extends AppCompatActivity {
         ImageButton add_button = findViewById(R.id.add_button);
         ImageButton back_button = findViewById(R.id.btn_back);
 
-        add_button.setOnClickListener(new View.OnClickListener() {
+        add_button.setOnClickListener(v -> {
+            DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
+            try {
+                String name = name_input.getText().toString().trim();
+                String email = email_input.getText().toString().trim();
+                String password = password_input.getText().toString().trim();
 
-            /**
-             * Sets an OnClickListener for a button.
-             * When the button is clicked, it creates a new entry in the database using the values
-             * entered in the name_input, email_input, and password_input fields.
-             *
-             * @param v The view (button) that was clicked.
-             */
-            @Override
-            public void onClick(View v) {
-                DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
-                try {
-                    myDB.addEntry(name_input.getText().toString().trim(),
-                            email_input.getText().toString().trim(),
-                            password_input.getText().toString().trim());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
+                if (
+                        name.length() >= 4 && name.length() <= 10 &&             // name    [4, 10]
+                        email.length() >= 4 && email.length() <= 30 &&           // email   [4, 30]
+                        password.length() >= 4 && password.length() <= 15        // psw     [4, 15]
+                ) {
+
+                    myDB.addEntry(
+                            name,
+                            email,
+                            password
+                    );
+
+                } else {
+                    if (name.length() < 4 || name.length() > 10) {
+                        Toast.makeText(getApplicationContext(), "Name should be 4 to 10 characters long!", Toast.LENGTH_SHORT).show();
+
+                    } else if (email.length() < 4 || email.length() > 30) {
+                        Toast.makeText(getApplicationContext(), "Email should be 4 to 30 characters long!", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Password should be 4 to 15 characters long!", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         });
 

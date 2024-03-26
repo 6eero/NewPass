@@ -54,7 +54,25 @@ public class UpdateActivity extends AppCompatActivity {
 
             try {
                 String encryptedPassword = EncryptionHelper.encrypt(password);
-                myDB.updateData(entry, name, email, encryptedPassword);
+
+                if (
+                        name.length() >= 4 && name.length() <= 10 &&                     // name    [4, 10]
+                                email.length() >= 4 && email.length() <= 30 &&           // email   [4, 30]
+                                password.length() >= 4 && password.length() <= 15        // psw     [4, 15]
+                ) {
+                    myDB.updateData(entry, name, email, encryptedPassword);
+                } else {
+                    if (name.length() < 4 || name.length() > 10) {
+                        Toast.makeText(getApplicationContext(), "Name should be 4 to 10 characters long!", Toast.LENGTH_SHORT).show();
+
+                    } else if (email.length() < 4 || email.length() > 30) {
+                        Toast.makeText(getApplicationContext(), "Email should be 4 to 30 characters long!", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Password should be 4 to 15 characters long!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
