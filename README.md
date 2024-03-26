@@ -52,8 +52,9 @@ git clone https://github.com/6eero/NewPass.git
   
 
 ## ⚒️ Todo
-- [ ] Prevent adding duplicate entries to the database.
 - [ ] Fix small screen layout display issue.
+- [ ] Prevent adding duplicate entries to the database.
+- [x] Set maximum and minimum length constraints on fields before inserting/updating entries in the database.
 - [x] Fix random crashes with multiple users.
 - [x] Improve the login GUI.
 - [x] Add a login menu to unlock the application.
