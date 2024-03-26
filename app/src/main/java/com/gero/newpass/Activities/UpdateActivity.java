@@ -17,6 +17,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 
 import com.gero.newpass.Database.DatabaseHelper;
+import com.gero.newpass.Database.DatabaseServiceLocator;
 import com.gero.newpass.Encryption.EncryptionHelper;
 import com.gero.newpass.R;
 import com.gero.newpass.databinding.ActivityUpdateBinding;
@@ -49,7 +50,9 @@ public class UpdateActivity extends AppCompatActivity {
 
         update_button.setOnClickListener(view -> {
 
-            DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this);
+            DatabaseServiceLocator.init(getApplicationContext());
+            DatabaseHelper myDB = DatabaseServiceLocator.getDatabaseHelper();
+            //DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this);
             name = name_input.getText().toString().trim();
             email = email_input.getText().toString().trim();
             password = password_input.getText().toString().trim();

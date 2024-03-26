@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.gero.newpass.Adapters.CustomAdapter;
 import com.gero.newpass.Database.DatabaseHelper;
+import com.gero.newpass.Database.DatabaseServiceLocator;
 import com.gero.newpass.R;
 import com.gero.newpass.databinding.ActivityMainBinding;
 
@@ -48,12 +49,15 @@ public class MainActivity extends AppCompatActivity {
         empty_imageview = binding.emptyImageview;
         no_data = binding.noData;
 
-        myDB = new DatabaseHelper(MainActivity.this);
+
+        //myDB = new DatabaseHelper(MainActivity.this);
         row_id = new ArrayList<>();
         row_name = new ArrayList<>();
         row_email = new ArrayList<>();
         row_password = new ArrayList<>();
 
+        DatabaseServiceLocator.init(getApplicationContext());
+        myDB = DatabaseServiceLocator.getDatabaseHelper();
         storeDataInArrays();
 
         CustomAdapter customAdapter = new CustomAdapter(MainActivity.this, this, row_id, row_name, row_email, row_password);

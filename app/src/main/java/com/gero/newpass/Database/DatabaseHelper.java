@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.gero.newpass.Activities.StringUtility;
+import com.gero.newpass.Utilities.StringUtility;
 import com.gero.newpass.Encryption.EncryptionHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {

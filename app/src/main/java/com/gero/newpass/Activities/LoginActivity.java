@@ -2,6 +2,7 @@ package com.gero.newpass.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
@@ -22,8 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gero.newpass.R;
-import com.gero.newpass.databinding.ActivityGeneratePasswordBinding;
+import com.gero.newpass.Utilities.StringUtility;
 import com.gero.newpass.databinding.ActivityLoginBinding;
+import com.gero.newpass.ViewModels.LoginViewModel;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -32,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText loginTextViewName, loginTextViewPassword;
     private EncryptedSharedPreferences sharedPreferences;
+    private LoginViewModel loginViewModel;
 
 
     @SuppressLint("SetTextI18n")
@@ -53,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         ImageView logoLogin = binding.logoLogin;
 
         Context context = this;
+
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         buttonLogin.setVisibility(View.GONE);
         welcomeLoginTextView.setVisibility(View.GONE);
@@ -115,8 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         if (
                 name.length() >= 4 &&
                 name.length() <= 10 &&
-                password.length() >= 4 &&
-                password.length() <= 10
+                password.length() >= 4
         ) {
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -140,12 +144,10 @@ public class LoginActivity extends AppCompatActivity {
             else if ((name.length() > 10)) {
                 Toast.makeText(this, "username must contain a maximum of 10 characters!", Toast.LENGTH_SHORT).show();
             }
-            else if ((password.length() <= 3)) {
+            else {
                 Toast.makeText(this, "password must be at least 4 characters!", Toast.LENGTH_SHORT).show();
             }
-            else {
-                Toast.makeText(this, "password must contain a maximum of 10 characters!", Toast.LENGTH_SHORT).show();
-            }
+
         }
     }
 

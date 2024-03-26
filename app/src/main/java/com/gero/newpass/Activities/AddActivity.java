@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.gero.newpass.Database.DatabaseHelper;
+import com.gero.newpass.Database.DatabaseServiceLocator;
 import com.gero.newpass.R;
 import com.gero.newpass.databinding.ActivityAddBinding;
 
@@ -36,7 +37,9 @@ public class AddActivity extends AppCompatActivity {
         ImageButton back_button = binding.backButton;
 
         add_button.setOnClickListener(v -> {
-            DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
+            DatabaseServiceLocator.init(getApplicationContext());
+            DatabaseHelper myDB = DatabaseServiceLocator.getDatabaseHelper();
+            //DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
             try {
                 String name = name_input.getText().toString().trim();
                 String email = email_input.getText().toString().trim();
