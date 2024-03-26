@@ -8,9 +8,7 @@
 
 <div align="center">
     <img alt="GitHub" src="https://img.shields.io/github/license/Ashinch/ReadYou?color=D0BCFF&style=flat-square">
-    <a target="_blank" href="https://github.com/6eero/NewPass/releases">
-        <img alt="Version" src="https://img.shields.io/github/v/release/6eero/NewPass?color=D0BCFF&label=version&style=flat-square">
-    </a>
+    <img alt="Version" src="https://img.shields.io/github/v/release/6eero/NewPass?color=D0BCFF&label=version&style=flat-square">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/6eero/NewPass?color=D0BCFF&style=flat-square">
 </div>
 
@@ -33,11 +31,14 @@ NewPass is a secure password management application designed to generate and sto
 
 - **AES Encryption**: NewPass encrypts all stored passwords using Advanced Encryption Standard (AES) with Cipher Block Chaining (CBC) mode before saving them in the local database.
 
+- **SQLite Chiper**: NewPass utilizes SQLCipher, an extension for SQLite databases, to bolster security further by encrypting entirely the database, ensuring robust protection against unauthorized access. The encryption key is chosen by the user upon the first launch of the app, and it remains saved and encrypted in an EncryptedSharedPreferences. It is then requested every time the app is launched. 
+
 - **User-Friendly Interface**: NewPass features an intuitive and user-friendly interface, making it easy to generate, view, and manage your passwords. The app offers convenient options for copying passwords to the clipboard and securely sharing them with other applications.
 
 
 ## ⬇️ Download 
 [<img src="https://s1.ax1x.com/2023/01/12/pSu1a36.png" alt="Get it on GitHub" height="80">](https://github.com/6eero/NewPass/releases)
+[<img src="https://github.com/6eero/NewPass/assets/114809573/113b2ce8-fd57-490e-bce0-9db1e55f52ba" alt="Get it on aaaa" height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.gero.newpass/)
 
 
 ## 🧱 Build
@@ -51,7 +52,9 @@ git clone https://github.com/6eero/NewPass.git
   
 
 ## ⚒️ Todo
-- [ ] Refactor the application using M3 design rules and Jetpack Compose.
+- [ ] Fix small screen layout display issue.
+- [ ] Prevent adding duplicate entries to the database.
+- [x] Set maximum and minimum length constraints on fields before inserting/updating entries in the database.
 - [x] Fix random crashes with multiple users.
 - [x] Improve the login GUI.
 - [x] Add a login menu to unlock the application.
