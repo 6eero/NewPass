@@ -118,4 +118,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public boolean checkIfAccountAlreadyExist(String name, String email) {
+        SQLiteDatabase db = this.getReadableDatabase(KEY_ENCRYPTION);
+
+        String selection = COLUMN_NAME + " = ? AND " + COLUMN_EMAIL + " = ?";
+        String[] selectionArgs = {name, email};
+
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        boolean result = cursor != null && cursor.moveToFirst();
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return result;
+    }
 }

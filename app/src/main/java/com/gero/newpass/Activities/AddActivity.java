@@ -46,11 +46,15 @@ public class AddActivity extends AppCompatActivity {
                         password.length() >= 4 && password.length() <= 15        // psw     [4, 15]
                 ) {
 
-                    myDB.addEntry(
-                            name,
-                            email,
-                            password
-                    );
+                    if (!myDB.checkIfAccountAlreadyExist(name, email)) {
+                        myDB.addEntry(
+                                name,
+                                email,
+                                password
+                        );
+                    } else  {
+                        Toast.makeText(getApplicationContext(), "This account already exist!", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     if (name.length() < 4 || name.length() > 10) {
