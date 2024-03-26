@@ -53,7 +53,8 @@ git clone https://github.com/6eero/NewPass.git
   
 
 ## ⚒️ Todo
-- [ ] Refactor the application using M3 design rules and Jetpack Compose.
+- [ ] Prevent adding duplicate entries to the database.
+- [ ] Fix small screen layout display issue.
 - [x] Fix random crashes with multiple users.
 - [x] Improve the login GUI.
 - [x] Add a login menu to unlock the application.
