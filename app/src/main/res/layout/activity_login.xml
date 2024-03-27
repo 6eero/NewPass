@@ -7,39 +7,56 @@
     android:background="@color/background"
     tools:context=".Activities.LoginActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="0dp" />
+
+    <ImageView
+        android:id="@+id/logo_login"
+        android:layout_width="0dp"
+        android:layout_height="543dp"
+        android:src="@drawable/logo_login"
+        app:layout_constraintBottom_toBottomOf="@+id/background_inputbox_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_col_2"
+        app:layout_constraintTop_toTopOf="@+id/guideline_row_2" />
+
     <ImageView
         android:id="@+id/background_inputbox_1"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@drawable/background_inputbox"
-        app:layout_constraintBottom_toTopOf="@+id/background_inputbox_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_row_42"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_col_4"
+        app:layout_constraintStart_toStartOf="@+id/guideline_col_1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_row_3" />
 
     <ImageView
         android:id="@+id/background_inputbox_2"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginBottom="160dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@drawable/background_inputbox"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_row_4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_col_4"
+        app:layout_constraintStart_toStartOf="@+id/guideline_col_1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_row_42" />
 
     <EditText
         android:id="@+id/login_tw_name"
         android:layout_width="287dp"
         android:layout_height="58dp"
+        android:backgroundTint="@color/background_secondary"
         android:ems="10"
         android:fontFamily="@font/jetbrainsmonoregular"
         android:hint="Name"
-        android:paddingBottom="22dp"
-        android:textSize="16dp"
         android:inputType="text"
+        android:paddingBottom="22dp"
         android:textColor="@color/text_primary"
-        android:backgroundTint="@color/background_secondary"
         android:textColorHint="@color/text_primary"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/background_inputbox_1"
         app:layout_constraintEnd_toEndOf="@+id/background_inputbox_1"
         app:layout_constraintStart_toStartOf="@+id/background_inputbox_1"
@@ -50,42 +67,41 @@
         android:id="@+id/welcome_register_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="90dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/jetbrainsmonobold"
+        android:gravity="center_horizontal"
         android:text="Welcome to\nNewPass!"
         android:textColor="@color/text_primary"
-        android:gravity="center_horizontal"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/background_inputbox_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline_col_4"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/guideline_col_1"
+        app:layout_constraintTop_toBottomOf="@+id/logo_register" />
 
     <TextView
         android:id="@+id/welcome_login_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
         android:fontFamily="@font/jetbrainsmonobold"
         android:text="Welcome back\nUser!"
         android:textColor="@color/text_primary"
         android:textSize="28sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_col_1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_row_1" />
 
     <EditText
         android:id="@+id/login_tw_password"
         android:layout_width="287dp"
         android:layout_height="58dp"
+        android:backgroundTint="@color/background_secondary"
         android:ems="10"
-        android:textSize="16dp"
         android:fontFamily="@font/jetbrainsmonoregular"
         android:hint="Password"
         android:inputType="text"
         android:paddingBottom="22dp"
         android:textColor="@color/text_primary"
         android:textColorHint="@color/text_primary"
-        android:backgroundTint="@color/background_secondary"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/background_inputbox_2"
         app:layout_constraintEnd_toEndOf="@+id/background_inputbox_2"
         app:layout_constraintHorizontal_bias="0.495"
@@ -95,54 +111,133 @@
 
     <ImageButton
         android:id="@+id/login_button"
-        android:layout_width="346dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:backgroundTint="@android:color/transparent"
         android:padding="1dp"
         android:scaleType="fitCenter"
         android:src="@drawable/btn_login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_row_6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_col_4"
+        app:layout_constraintStart_toStartOf="@+id/guideline_col_1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_row_5" />
 
     <ImageButton
         android:id="@+id/register_button"
-        android:layout_width="346dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:backgroundTint="@android:color/transparent"
         android:padding="1dp"
         android:scaleType="fitCenter"
         android:src="@drawable/btn_create_account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_row_6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_col_4"
+        app:layout_constraintStart_toStartOf="@+id/guideline_col_1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_row_5" />
 
     <ImageView
         android:id="@+id/logo_register"
-        android:layout_width="121dp"
+        android:layout_width="0dp"
         android:layout_height="135dp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toTopOf="@+id/welcome_register_tw"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/logo_login"
-        android:layout_width="225dp"
-        android:layout_height="454dp"
-        android:layout_marginBottom="50dp"
-        android:src="@drawable/logo_login"
-        app:layout_constraintBottom_toTopOf="@+id/background_inputbox_2"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline_col_3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_col_38"
+        app:layout_constraintTop_toTopOf="@+id/guideline_row_2"
+        app:layout_constraintVertical_bias="0.0" />
 
 
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_col_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_col_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.42" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_col_38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_col_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_col_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.93" />
+
+
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_row_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_row_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_row_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_row_42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_row_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_row_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_row_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
