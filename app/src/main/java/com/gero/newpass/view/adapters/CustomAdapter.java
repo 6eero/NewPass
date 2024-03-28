@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gero.newpass.R;
-import com.gero.newpass.Activities.UpdateActivity;
+import com.gero.newpass.view.activities.UpdateActivity;
 
 import java.util.ArrayList;
 

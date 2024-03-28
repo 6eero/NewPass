@@ -1,8 +1,9 @@
-package com.gero.newpass.Activities;
+package com.gero.newpass.view.activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,31 +17,34 @@ import android.widget.Toast;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 
-import com.gero.newpass.model.database.DatabaseHelper;
-import com.gero.newpass.model.database.DatabaseServiceLocator;
+import com.gero.newpass.Activities.MainActivity;
 import com.gero.newpass.model.encryption.EncryptionHelper;
 import com.gero.newpass.R;
 import com.gero.newpass.databinding.ActivityUpdateBinding;
+import com.gero.newpass.viewmodel.UpdateViewModel;
 
 public class UpdateActivity extends AppCompatActivity {
 
     private EditText name_input, email_input, password_input;
     private String entry, name, email, password;
+    private UpdateViewModel updateViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        com.gero.newpass.databinding.ActivityUpdateBinding binding = ActivityUpdateBinding.inflate(getLayoutInflater());
+        ActivityUpdateBinding binding = ActivityUpdateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         changeBarsColor(R.color.background_primary);
+
+        updateViewModel = new ViewModelProvider(this).get(UpdateViewModel.class);
 
         name_input = binding.nameInput2;
         email_input = binding.emailInput2;
         password_input = binding.passwordInput2;
-        ImageButton update_button = binding.updateButton;
-        ImageButton back_button = binding.backButton;
-        ImageButton delete_button = binding.deleteButton;
-        ImageButton copy_button = binding.copyButton;
+        ImageButton updateButton = binding.updateButton;
+        ImageButton backButton = binding.backButton;
+        ImageButton deleteButton = binding.deleteButton;
+        ImageButton copyButton = binding.copyButton;
 
         try {
             getAndSetIntentData();
@@ -48,62 +52,51 @@ public class UpdateActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        update_button.setOnClickListener(view -> {
+        // Observe any feedback messages from the ViewModel
+        updateViewModel.getMessageLiveData().observe(this, message ->
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show());
 
-            DatabaseServiceLocator.init(getApplicationContext());
-            DatabaseHelper myDB = DatabaseServiceLocator.getDatabaseHelper();
-            //DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this);
+        updateButton.setOnClickListener(view -> {
+
             name = name_input.getText().toString().trim();
             email = email_input.getText().toString().trim();
             password = password_input.getText().toString().trim();
 
-            try {
-                String encryptedPassword = EncryptionHelper.encrypt(password);
+            updateViewModel.updateEntry(entry, name, email, password);
 
-                if (
-                        name.length() >= 4 && name.length() <= 10 &&                     // name    [4, 10]
-                                email.length() >= 4 && email.length() <= 30 &&           // email   [4, 30]
-                                password.length() >= 4 && password.length() <= 15        // psw     [4, 15]
-                ) {
-                    myDB.updateData(entry, name, email, encryptedPassword);
-                } else {
-                    if (name.length() < 4 || name.length() > 10) {
-                        Toast.makeText(getApplicationContext(), "Name should be 4 to 10 characters long!", Toast.LENGTH_SHORT).show();
-
-                    } else if (email.length() < 4 || email.length() > 30) {
-                        Toast.makeText(getApplicationContext(), "Email should be 4 to 30 characters long!", Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Password should be 4 to 15 characters long!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
         });
 
-        back_button.setOnClickListener(v -> {
-            Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+        deleteButton.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Delete " + name + " ?");
+            builder.setMessage("Are you sure you want to delete " + name + " ?");
+            builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                updateViewModel.deleteEntry(entry);
+                finish();
+            });
+            builder.setNegativeButton("No", (dialogInterface, i) -> {
+
+            });
+            builder.create().show();
+
         });
 
-        delete_button.setOnClickListener(v -> confirmDialog());
-        copy_button.setOnClickListener(v -> {
+        copyButton.setOnClickListener(v -> {
             copyToClipboard(password_input.getText().toString());
 
             Toast.makeText(UpdateActivity.this, "Text copied to the clipboard", Toast.LENGTH_SHORT).show();
         });
 
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+
+
     }
 
-    /**
-     * Retrieves data from the intent extras and sets the values to the corresponding input fields.
-     * If the intent extras contain entry, name, email, and password data, it sets the values to the input fields.
-     * Otherwise, it displays a toast indicating that no data is available.
-     *
-     */
     void getAndSetIntentData() {
         if(getIntent().hasExtra("entry") && getIntent().hasExtra("name") &&
                 getIntent().hasExtra("email") && getIntent().hasExtra("password")){
@@ -122,26 +115,6 @@ public class UpdateActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    /**
-     * Displays a confirmation dialog for deleting an entry.
-     * If the user confirms deletion, the entry is deleted from the database.
-     * If the user cancels deletion, the dialog is dismissed.
-     */
-    void confirmDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete " + name + " ?");
-        builder.setMessage("Are you sure you want to delete " + name + " ?");
-        builder.setPositiveButton("Yes", (dialogInterface, i) -> {
-            DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this);
-            myDB.deleteOneRow(entry);
-            finish();
-        });
-        builder.setNegativeButton("No", (dialogInterface, i) -> {
-
-        });
-        builder.create().show();
     }
 
     /**
