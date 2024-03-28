@@ -19,7 +19,7 @@
             android:name=".Activities.UpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.AddActivity"
+            android:name=".view.activities.AddActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.LoginActivity"
