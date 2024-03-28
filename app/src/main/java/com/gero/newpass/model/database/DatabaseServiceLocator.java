@@ -1,4 +1,4 @@
-package com.gero.newpass.Database;
+package com.gero.newpass.model.database;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

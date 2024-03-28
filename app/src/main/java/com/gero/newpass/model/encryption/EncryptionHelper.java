@@ -1,4 +1,4 @@
-package com.gero.newpass.Encryption;
+package com.gero.newpass.model.encryption;
 
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;

@@ -23,9 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gero.newpass.R;
-import com.gero.newpass.Utilities.StringUtility;
+import com.gero.newpass.model.utilities.StringUtility;
 import com.gero.newpass.databinding.ActivityLoginBinding;
-import com.gero.newpass.ViewModels.LoginViewModel;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -34,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText loginTextViewName, loginTextViewPassword;
     private EncryptedSharedPreferences sharedPreferences;
-    private LoginViewModel loginViewModel;
 
 
     @SuppressLint("SetTextI18n")
@@ -56,8 +54,6 @@ public class LoginActivity extends AppCompatActivity {
         ImageView logoLogin = binding.logoLogin;
 
         Context context = this;
-
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         buttonLogin.setVisibility(View.GONE);
         welcomeLoginTextView.setVisibility(View.GONE);

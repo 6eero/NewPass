@@ -16,9 +16,9 @@ import android.widget.Toast;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 
-import com.gero.newpass.Database.DatabaseHelper;
-import com.gero.newpass.Database.DatabaseServiceLocator;
-import com.gero.newpass.Encryption.EncryptionHelper;
+import com.gero.newpass.model.database.DatabaseHelper;
+import com.gero.newpass.model.database.DatabaseServiceLocator;
+import com.gero.newpass.model.encryption.EncryptionHelper;
 import com.gero.newpass.R;
 import com.gero.newpass.databinding.ActivityUpdateBinding;
 

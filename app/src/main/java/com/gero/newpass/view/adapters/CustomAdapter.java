@@ -1,4 +1,4 @@
-package com.gero.newpass.Adapters;
+package com.gero.newpass.view.adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

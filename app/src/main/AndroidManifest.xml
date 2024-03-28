@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.GeneratePasswordActivity" />
+        <activity android:name=".view.activities.GeneratePasswordActivity" />
     </application>
 
 </manifest>

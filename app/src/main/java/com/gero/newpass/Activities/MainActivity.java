@@ -17,9 +17,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.gero.newpass.Adapters.CustomAdapter;
-import com.gero.newpass.Database.DatabaseHelper;
-import com.gero.newpass.Database.DatabaseServiceLocator;
+import com.gero.newpass.view.activities.GeneratePasswordActivity;
+import com.gero.newpass.view.adapters.CustomAdapter;
+import com.gero.newpass.model.database.DatabaseHelper;
+import com.gero.newpass.model.database.DatabaseServiceLocator;
 import com.gero.newpass.R;
 import com.gero.newpass.databinding.ActivityMainBinding;
 
