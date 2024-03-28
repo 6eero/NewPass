@@ -45,9 +45,17 @@ public class GeneratePasswordActivity extends AppCompatActivity {
         initViews(binding);
         generatePasswordViewModel = new ViewModelProvider(this).get(GeneratePasswordViewModel.class);
 
-        /*TODO: generates and displays the password when starting the activity*/
-
         buttonRegenerate.setOnClickListener(v -> generatePasswordViewModel.generatePassword());
+
+        generatePasswordViewModel.generatePassword();
+
+        generatePasswordViewModel.getPasswordLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String newPassword) {
+                textViewPassword.setText(newPassword);
+                textViewLength.setText("[" + String.valueOf(newPassword.length()) + "]");
+            }
+        });
 
 
 

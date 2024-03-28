@@ -11,20 +11,22 @@ import java.util.Random;
 public class GeneratePasswordViewModel extends ViewModel {
 
     private final MutableLiveData<String> passwordLiveData = new MutableLiveData<>();
-    private final MutableLiveData<String> passwordLenLiveData = new MutableLiveData<>();
     private final MutableLiveData<Boolean> uppercaseStateLiveData = new MutableLiveData<>();
     private final MutableLiveData<Boolean> numberStateLiveData = new MutableLiveData<>();
     private final MutableLiveData<Boolean> specialeStateLiveData = new MutableLiveData<>();
     private boolean uppercase = false;
     private boolean number = false;
     private boolean special = false;
-    private int length = 0;
+    private int length = 8;
 
     public GeneratePasswordViewModel() {
         generatePassword();
         uppercaseStateLiveData.setValue(uppercase);
+        numberStateLiveData.setValue(number);
+        specialeStateLiveData.setValue(special);
     }
 
+    public LiveData<String> getPasswordLiveData() { return passwordLiveData; }
     public LiveData<Boolean> getUppercaseStateLiveData() {
         return uppercaseStateLiveData;
     }
