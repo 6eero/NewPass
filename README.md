@@ -52,7 +52,8 @@ git clone https://github.com/6eero/NewPass.git
   
 
 ## ⚒️ Todo
-- [ ] Fix small screen layout display issue.
+- [ ] Refactor code to use MVVM design pattern.
+- [x] Fix small screen layout display issue.
 - [x] Prevent adding duplicate entries to the database.
 - [x] Set maximum and minimum length constraints on fields before inserting/updating entries in the database.
 - [x] Fix random crashes with multiple users.
