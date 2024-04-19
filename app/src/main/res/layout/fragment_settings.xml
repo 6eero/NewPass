@@ -406,7 +406,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_col_9"
         app:layout_constraintTop_toTopOf="@+id/guideline_row_10" />
 
-    <com.google.android.material.button.MaterialSwitch
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/toggleDarkMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
