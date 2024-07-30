@@ -32,7 +32,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v1
+        uses: gradle/wrapper-validation-action@v3
       
       - name: Build with Gradle
         id: gradle_build_debug
