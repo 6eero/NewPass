@@ -5,9 +5,9 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
 
 import com.gero.newpass.ContextWrapper.NewPassContextWrapper;
 import com.gero.newpass.SharedPreferences.SharedPreferencesHelper;
@@ -22,7 +22,9 @@ import com.gero.newpass.view.fragments.MainViewFragment;
 import java.util.Locale;
 import java.util.Objects;
 
-public class MainViewActivity extends AppCompatActivity implements LanguageDialogFragment.LanguageListener {
+import dev.trindadedev.ui.base.NewPassActivity;
+
+public class MainViewActivity extends NewPassActivity implements LanguageDialogFragment.LanguageListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +33,6 @@ public class MainViewActivity extends AppCompatActivity implements LanguageDialo
         setContentView(binding.getRoot());
 
         DatabaseServiceLocator.init(getApplicationContext());
-
-        SystemBarColorHelper.changeBarsColor(this, R.color.background_primary);
 
         // Initial fragment setup, showing the 'AddFragment' by default
         if (savedInstanceState == null) {
@@ -53,8 +53,6 @@ public class MainViewActivity extends AppCompatActivity implements LanguageDialo
 
         // Perform the fragment transaction and add it to the back stack
         getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_right_to_left,
-                        R.anim.enter_left_to_right, R.anim.exit_left_to_right)
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit();

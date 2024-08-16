@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ColorSwitchStyle">
-        <item name="colorControlActivated">@color/colorOn</item>
-        <item name="colorSwitchThumbNormal">@color/colorOff</item>
+    <style name="Theme.NewPass.TextInputLayoutStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:paddingHorizontal">0dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:bottomLeftRadius">14dp</item>
+        <item name="android:bottomRightRadius">14dp</item>
+        <item name="android:topLeftRadius">14dp</item>
+        <item name="android:topRightRadius">14dp</item>
+        <item name="hintEnabled">true</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.NewPass.TextInputLayoutStyle</item>
     </style>
+
+    <style name="ShapeAppearance.NewPass.TextInputLayoutStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+    
+    <!-- just to fix bugs -->
+    <style name="ShapeAppearance" />
+    <style name="ShapeAppearance.NewPass" />
 </resources>

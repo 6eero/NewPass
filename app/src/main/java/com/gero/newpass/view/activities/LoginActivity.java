@@ -19,12 +19,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.security.crypto.EncryptedSharedPreferences;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import com.gero.newpass.ContextWrapper.NewPassContextWrapper;
 import com.gero.newpass.R;
@@ -43,7 +44,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Locale;
 
-public class LoginActivity extends AppCompatActivity {
+import dev.trindadedev.ui.base.NewPassActivity;
+
+public class LoginActivity extends NewPassActivity {
 
     private EditText passwordEntry;
     private ImageButton buttonRegisterOrUnlock, buttonPasswordVisibility;
@@ -60,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        SystemBarColorHelper.changeBarsColor(this, R.color.background_primary);
 
         initViews(binding);
 
@@ -98,14 +100,16 @@ public class LoginActivity extends AppCompatActivity {
         if (!isPasswordEmpty) {
             textViewRegisterOrUnlock.setText(getString(R.string.unlock_newpass_button_text));
             welcomeTextView.setText(getString(R.string.welcome_back_newpass_text));
-
         } else {
-            AlertDialog dialog = getAlertDialog();
+            var dialog = new MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.welcome_newpass_text))
+                .setMessage(getString(R.string.caution_message))
+                .setPositiveButton(getString(R.string.continue_button), (dialogIn, which) -> dialogIn.dismiss())
+                .create();
             dialog.show();
         }
 
         buttonPasswordVisibility.setOnClickListener(v -> {
-
             if (isPasswordVisible) {
                 buttonPasswordVisibility.setImageDrawable(ContextCompat.getDrawable(LoginActivity.this, R.drawable.icon_visibility_on));
                 passwordEntry.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -121,18 +125,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonRegisterOrUnlockListener(buttonRegisterOrUnlock, isPasswordEmpty);
     }
 
-    @NonNull
-    private AlertDialog getAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.welcome_newpass_text);
-        builder.setMessage(R.string.caution_message);
-        builder.setPositiveButton(R.string.continue_button, (dialog, which) -> dialog.dismiss());
-        AlertDialog dialog = builder.create();
-        return dialog;
-    }
-
     public void buttonRegisterOrUnlockListener(View view, Boolean isPasswordEmpty) {
-
         if (!isPasswordEmpty) {
             loginUser(view);
 

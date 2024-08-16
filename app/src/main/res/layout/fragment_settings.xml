@@ -51,6 +51,7 @@
         android:padding="1dp"
         android:scaleType="fitCenter"
         android:src="@drawable/btn_back"
+        android:background="?selectableItemBackgroundBorderless"
         app:layout_constraintStart_toStartOf="@+id/guideline_col_1"
         app:layout_constraintTop_toTopOf="@+id/guideline_row_1" />
 

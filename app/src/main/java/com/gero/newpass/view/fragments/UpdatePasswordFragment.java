@@ -33,9 +33,9 @@ import com.gero.newpass.utilities.VibrationHelper;
 import com.gero.newpass.view.activities.MainViewActivity;
 import com.gero.newpass.viewmodel.UpdateViewModel;
 
+import dev.trindadedev.ui.base.NewPassFragment;
 
-public class UpdatePasswordFragment extends Fragment {
-
+public class UpdatePasswordFragment extends NewPassFragment {
 
     private FragmentUpdatePasswordBinding binding;
 
