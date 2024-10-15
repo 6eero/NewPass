@@ -33,7 +33,10 @@ import com.gero.newpass.view.adapters.SettingsAdapter;
 
 import java.util.ArrayList;
 
-public class SettingsFragment extends Fragment {
+import dev.trindadedev.ui.base.NewPassFragment;
+
+public class SettingsFragment extends NewPassFragment {
+
     private static final int REQUEST_CODE_IMPORT_DOCUMENT = 2;
     private ImageButton buttonBack;
     private FragmentSettingsBinding binding;

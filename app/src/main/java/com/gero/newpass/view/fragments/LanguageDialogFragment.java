@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import com.gero.newpass.R;
 import com.gero.newpass.SharedPreferences.SharedPreferencesHelper;
 
@@ -49,17 +51,17 @@ public class LanguageDialogFragment extends DialogFragment {
 
         //Log.i("32465034", Arrays.toString(languageList) + " " + position + " " + currentLanguage.substring(0, 2));
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(getActivity());
 
-        builder.setTitle(R.string.languagedialog_select_your_choice)
-                .setSingleChoiceItems(languageList, position, (dialog, which) -> position = which)
-                .setPositiveButton("Ok", (dialog, which) -> {
+        dialog.setTitle(R.string.languagedialog_select_your_choice)
+                .setSingleChoiceItems(languageList, position, (dialogIn, which) -> position = which)
+                .setPositiveButton("Ok", (dialogIn, which) -> {
                     mListener.onPositiveButtonClicked(languageList, position);
                     Toast.makeText(requireContext(), getString(R.string.language_changed), Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton(R.string.cancel, (dialog, which) -> mListener.onNegativeButtonClicked());
+                .setNegativeButton(R.string.cancel, (dialogIn, which) -> mListener.onNegativeButtonClicked());
 
-        return builder.create();
+        return dialog.create();
     }
 
     private int getLanguagePosition(String[] languageList, String currentLanguage) {

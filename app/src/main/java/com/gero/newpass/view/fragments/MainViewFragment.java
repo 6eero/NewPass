@@ -22,9 +22,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import com.gero.newpass.R;
 import com.gero.newpass.databinding.FragmentMainViewBinding;
-
 import com.gero.newpass.utilities.VibrationHelper;
 import com.gero.newpass.view.activities.MainViewActivity;
 import com.gero.newpass.view.adapters.CustomAdapter;
@@ -32,8 +33,9 @@ import com.gero.newpass.viewmodel.MainViewModel;
 
 import java.util.Objects;
 
+import dev.trindadedev.ui.base.NewPassFragment;
 
-public class MainViewFragment extends Fragment {
+public class MainViewFragment extends NewPassFragment {
 
     private FragmentMainViewBinding binding;
     private TextView noData, count;
@@ -156,16 +158,16 @@ public class MainViewFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     private void showInputDialog() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireContext());
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_search, null);
-        builder.setView(dialogView);
+        dialog.setView(dialogView);
 
 
         EditText input = dialogView.findViewById(R.id.input);
 
-        builder.setTitle(R.string.search_password)
-                .setPositiveButton(R.string.ok, (dialog, which) -> {
+        dialog.setTitle(R.string.search_password)
+                .setPositiveButton(R.string.ok, (dialogIn, which) -> {
 
                     String searchTerm = input.getText().toString().toLowerCase().trim();
 
@@ -193,9 +195,8 @@ public class MainViewFragment extends Fragment {
                         }
                     });
                 });
-        builder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.cancel());
-
-        builder.show();
+        dialog.setNegativeButton(R.string.cancel, (dialogIn, which) -> dialogIn.cancel());
+        dialog.show();
     }
 
     private void initViews() {

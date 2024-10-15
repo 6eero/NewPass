@@ -39,7 +39,7 @@ public class SharedPreferencesHelper {
             currentLanguage = "Русский";
             
         } else if (Objects.equals(currentLanguage, "pt-rBR")) {
-            currentLanguage = "Portuguese";
+            currentLanguage = "Português";
         } 
         
         return currentLanguage;
@@ -59,7 +59,7 @@ public class SharedPreferencesHelper {
             selectedLanguage = "pt-rBR";
         }
         
-        if (Objects.equals(selectedLanguage, "Portuguse")) {
+        if (Objects.equals(selectedLanguage, "Português")) {
             selectedLanguage = "pt-rBR";
         }
 
