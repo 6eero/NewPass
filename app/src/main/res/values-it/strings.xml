@@ -17,7 +17,7 @@
     <string name="add_password">Password</string>
     <!--generate.xml-->
     <string name="generate_create">Crea</string>
-    <string name="generate_a_password_for">Una password per il \ntuo reame digitale</string>
+    <string name="generate_a_password_for">Una password per il\ntuo reame digitale</string>
     <string name="generate_length">Lunghezza</string>
     <string name="generate_length_example">Lunghezza</string>
     <string name="generate_uppercase">Maiuscole</string>
@@ -40,7 +40,7 @@
     <string name="settings_contact_me">Contattami su Telegram</string>
     <string name="settings_change_language">Cambia lingua</string>
     <string name="settings_dark_theme">Luci Spente</string>
-    <string name="settings_github">Respository su GitHub</string>
+    <string name="settings_github">Repository su GitHub</string>
     <!--update.xml-->
     <string name="update_update">Aggiorna</string>
     <string name="update_name">Nome</string>
@@ -68,7 +68,7 @@
     <string name="account_added_successfully">Account aggiunto con successo</string>
     <string name="name_should_be_1_to">"Il nome deve essere compreso tra 1 e "</string>
     <string name="characters_long">" caratteri"</string>
-    <string name="email_should_be_0_to">"L'email deve essere compresa tra 0 e "</string>
+    <string name="email_should_be_0_to">"L\'email deve essere compresa tra 0 e "</string>
     <string name="login_done">Login effettuato</string>
     <string name="access_denied">Password errata</string>
     <string name="user_created_successfully">Utente creato con successo</string>
@@ -78,18 +78,18 @@
     <string name="login">Accedi a NewPass</string>
     <string name="use_your_biometric_or_device_credentials">Usa le credenziali del dispositivo</string>
     <string name="settings_change_password">Cambia la password di accesso</string>
-    <string name="app_version">"Versione dell'app: "</string>
+    <string name="app_version">"Versione dell\'app: "</string>
     <string name="wrong_password">Password errata</string>
     <string name="enter_the_old_password">Password attuale</string>
     <string name="enter_the_new_password">Nuova password</string>
-    <string name="use_screen_lock_to_unlock">Usa il blocco schermo </string>
+    <string name="use_screen_lock_to_unlock">Usa il blocco schermo</string>
     <string name="import_database">Importa Database</string>
     <string name="confirm">Conferma</string>
     <string name="incorrect_password_or_database_is_corrupt">Password errata o database è corrotto.</string>
     <string name="database_password_changed_successfully">Password del database cambiata con successo!</string>
-    <string name="no_database_found_at">Nessun database trovato in: </string>
-    <string name="database_successfully_exported_to">Database esportato con successo in: </string>
-    <string name="export_failed">Esportazione fallita: </string>
+    <string name="no_database_found_at">Nessun database trovato in:</string>
+    <string name="database_successfully_exported_to">Database esportato con successo in:</string>
+    <string name="export_failed">Esportazione fallita:</string>
     <string name="database_imported_successfully">Database importato con successo!</string>
     <string name="failed_to_import_database">Impossibile importare il database</string>
     <string name="database_deleted_successfully">Database eliminato con successo!</string>
@@ -114,5 +114,4 @@
     <string name="password_cannot_be_empty">La password non può essere vuota!</string>
     <string name="report_an_issue_securely">Segnala un problema</string>
     <string name="website">Sito web</string>
-
 </resources>

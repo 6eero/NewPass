@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">NewPass</string>
     <string name="unlock_newpass_button_text">[unlock NewPass]</string>
@@ -82,7 +83,7 @@
     <string name="incorrect_password_or_database_is_corrupt">Incorrect password or database is corrupt.</string>
     <string name="database_password_changed_successfully">Database password changed successfully!</string>
     <string name="no_database_found_at">"No database found at: "</string>
-    <string name="database_successfully_exported_to">"Database exported successfully to: "</string>
+    <string name="database_successfully_exported_to">Database exported successfully to:</string>
     <string name="export_failed">"Export failed: "</string>
     <string name="database_imported_successfully">Database imported successfully!</string>
     <string name="failed_to_import_database">Failed to import database</string>

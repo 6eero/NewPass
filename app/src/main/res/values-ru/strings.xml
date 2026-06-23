@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="unlock_newpass_button_text">[разблокировать NewPass]</string>
     <string name="create_password_button_text">[создать пароль]</string>
@@ -51,9 +52,9 @@
     <string name="dbhelper_updated_successfully">Обновлено успешно!</string>
     <string name="dbhelper_failed_to_delete">Не удалось удалить.</string>
     <string name="dbhelper_successfully_deleted">Удалено успешно.</string>
-    <string name="generate_text_copied_to_clipboard">Текст  скопирован в буфер обмена</string>
-    <string name="settings_share_text">Unlock a world of security with NewPass – your ultimate password guardian. Explore it now: https://github.com/6eero/NewPass/releases</string>
-    <string name="text_copied_to_clipboard">Текст  скопирован в буфер обмена</string>
+    <string name="generate_text_copied_to_clipboard">Текст скопирован в буфер обмена</string>
+    <string name="settings_share_text">Откройте для себя мир безопасности с NewPass - ваш хранитель паролей. Познакомьтесь прямо сейчас: https://github.com/6eero/newpass/releases</string>
+    <string name="text_copied_to_clipboard">Текст скопирован в буфер обмена</string>
     <string name="languagedialog_select_your_choice">Выберите язык</string>
     <string name="cancel">Назад</string>
     <string name="this_account_already_exists">Такой аккаунт уже существует!</string>
@@ -62,7 +63,7 @@
     <string name="characters_long">" знаков длиной!"</string>
     <string name="email_should_be_0_to">"Почта должна быть от 0 "</string>
     <string name="login_done">Вы успешно вошли</string>
-    <string name="access_denied">Неверный пароль</string>
+    <string name="access_denied">Отказано в доступе</string>
     <string name="user_created_successfully">Пользователь успешно создан!</string>
     <string name="password_must_be_at_least_4_characters_long">Пароль должен быть от 4 знаков длиной!</string>
     <string name="settings_import_db">Импортировать пароли</string>
@@ -80,7 +81,7 @@
     <string name="incorrect_password_or_database_is_corrupt">Неверный пароль или база данных повреждена.</string>
     <string name="database_password_changed_successfully">DПароль базы данных успешно изменён!</string>
     <string name="no_database_found_at">"База данных не найдена в: "</string>
-    <string name="database_successfully_exported_to">"База данных успешно экспортирована в: "</string>
+    <string name="database_successfully_exported_to">База данных успешно экспортирована в:</string>
     <string name="export_failed">"Ошибка экспорта: "</string>
     <string name="database_imported_successfully">База данных успешно импортирована!</string>
     <string name="failed_to_import_database">Не удалось импортировать базу данных</string>

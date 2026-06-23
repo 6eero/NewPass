@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="unlock_newpass_button_text">[desbloquear NewPass]</string>
     <string name="create_password_button_text">[criar senha]</string>
-    <string name="welcome_newpass_text">Bem vindo ao \nNewpass!</string>
-    <string name="welcome_back_newpass_text">Bem vindo de  volta\nao NewPass!</string>
+    <string name="welcome_newpass_text">Bem vindo ao\nNewpass!</string>
+    <string name="welcome_back_newpass_text">Bem vindo de volta\nao NewPass!</string>
     <string name="login_text">texto</string>
     <string name="login_password">Senha</string>
     <string name="login_button">Botão_TextView</string>

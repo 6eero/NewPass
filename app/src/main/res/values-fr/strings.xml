@@ -61,7 +61,7 @@
     <string name="account_added_successfully">Compte ajouté avec succès</string>
     <string name="name_should_be_1_to">"Le nom doit avoir de 1 à "</string>
     <string name="characters_long">" caractères de long!"</string>
-    <string name="email_should_be_0_to">"L'e-mail doit avoir de 0 à "</string>
+    <string name="email_should_be_0_to">"L\'e-mail doit avoir de 0 à "</string>
     <string name="login_done">Connexion effectuée</string>
     <string name="access_denied">Accès refusé</string>
     <string name="user_created_successfully">Utilisateur créé avec succès !</string>
@@ -71,7 +71,7 @@
     <string name="login">Connectez-vous à NewPass</string>
     <string name="use_your_biometric_or_device_credentials">Utilisez vos identifiants biométriques ou de dispositif</string>
     <string name="settings_change_password">Changer le mot de passe d\'accès</string>
-    <string name="app_version">"Version de l'application: "</string>
+    <string name="app_version">"Version de l\'application: "</string>
     <string name="wrong_password">Mot de passe incorrect</string>
     <string name="enter_the_old_password">Ancien mot de passe</string>
     <string name="enter_the_new_password">Nouveau mot de passe</string>
@@ -80,9 +80,9 @@
     <string name="confirm">Confirmer</string>
     <string name="incorrect_password_or_database_is_corrupt">Mot de passe incorrect ou base de données corrompue.</string>
     <string name="database_password_changed_successfully">Mot de passe de la base de données changé avec succès!</string>
-    <string name="no_database_found_at">Aucune base de données trouvée à l\'emplacement suivant: </string>
-    <string name="database_successfully_exported_to">Base de données exportée avec succès vers: </string>
-    <string name="export_failed">Échec de l\'exportation: </string>
+    <string name="no_database_found_at">Aucune base de données trouvée à l\'emplacement suivant:</string>
+    <string name="database_successfully_exported_to">Base de données exportée avec succès vers :</string>
+    <string name="export_failed">Échec de l\'exportation:</string>
     <string name="database_imported_successfully">Base de données importée avec succès!</string>
     <string name="failed_to_import_database">Impossible d\'importer la base de données</string>
     <string name="database_deleted_successfully">Base de données supprimée avec succès!</string>
@@ -107,5 +107,4 @@
     <string name="password_cannot_be_empty">Le mot de passe ne peut pas être vide !</string>
     <string name="report_an_issue_securely">Signaler un problème</string>
     <string name="website">Site web</string>
-
 </resources>

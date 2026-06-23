@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="unlock_newpass_button_text">[NewPass\'in kilidini aç]</string>
     <string name="create_password_button_text">[Şifre oluştur]</string>
-    <string name="welcome_newpass_text">Newpass\'a \nhoş geldiniz!</string>
-    <string name="welcome_back_newpass_text">NewPass\'e tekrar \nhoş geldiniz!</string>
+    <string name="welcome_newpass_text">Newpass\'a\nhoş geldiniz!</string>
+    <string name="welcome_back_newpass_text">NewPass\'e tekrar\nhoş geldiniz!</string>
     <string name="login_text">Metin</string>
     <string name="login_password">Şifre</string>
     <string name="login_button">TextView_button</string>
@@ -12,7 +13,7 @@
     <string name="add_email">E-Posta/Kullanıcı Adı</string>
     <string name="add_password">Şifre</string>
     <string name="generate_create">Oluştur</string>
-    <string name="generate_a_password_for">Dijital alanınız için \nbir şifre</string>
+    <string name="generate_a_password_for">Dijital alanınız için\nbir şifre</string>
     <string name="generate_length">Uzunluk</string>
     <string name="generate_length_example">Uzunluk</string>
     <string name="generate_uppercase">Büyük Harf</string>
@@ -58,9 +59,9 @@
     <string name="cancel">Geri dön</string>
     <string name="this_account_already_exists">Bu hesap zaten mevcut!</string>
     <string name="account_added_successfully">Hesap başarıyla eklendi</string>
-    <string name="name_should_be_1_to">"İsim 1 ile " arasında olmalıdır</string>
+    <string name="name_should_be_1_to">"İsim 1 ile  arasında olmalıdır"</string>
     <string name="characters_long">" karakter uzun!"</string>
-    <string name="email_should_be_0_to">"E-Posta 0 ile " arasında olmalıdır</string>
+    <string name="email_should_be_0_to">"E-Posta 0 ile  arasında olmalıdır"</string>
     <string name="login_done">Giriş Yapıldı</string>
     <string name="access_denied">Erişim Reddedildi</string>
     <string name="user_created_successfully">Kullanıcı başarıyla oluşturuldu!</string>

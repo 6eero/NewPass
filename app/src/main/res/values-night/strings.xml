@@ -1,7 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">NewPass</string>
-
-<!--    Login Activity-->
+    <!--    Login Activity-->
     <string name="unlock_newpass_button_text">[unlock NewPass]</string>
     <string name="create_password_button_text">[create password]</string>
     <string name="welcome_newpass_text">Welcome to\nNewpass!</string>

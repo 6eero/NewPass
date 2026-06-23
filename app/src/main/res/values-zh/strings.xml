@@ -3,8 +3,7 @@
     <string name="unlock_newpass_button_text">[解锁 NewPass]</string>
     <string name="create_password_button_text">[创建密码]</string>
     <string name="welcome_newpass_text">欢迎来到\nNewPass！</string>
-    <string name="welcome_back_newpass_text">欢迎回到
-\nNewPass！</string>
+    <string name="welcome_back_newpass_text">欢迎回到\nNewPass！</string>
     <string name="login_text">文本</string>
     <string name="login_password">密码</string>
     <string name="login_button">TextView_button</string>
@@ -14,8 +13,7 @@
     <string name="add_email">电子邮件/用户名</string>
     <string name="add_password">密码</string>
     <string name="generate_create">创建</string>
-    <string name="generate_a_password_for">为您的数字领域
-\n创建密码</string>
+    <string name="generate_a_password_for">为您的数字领域\n创建密码</string>
     <string name="generate_length">长度</string>
     <string name="generate_length_example">长度</string>
     <string name="generate_uppercase">大写</string>
@@ -36,7 +34,7 @@
     <string name="settings_contact_me">联系我</string>
     <string name="settings_change_language">更改语言</string>
     <string name="settings_dark_theme">暗色主题</string>
-    <string name="settings_github">GitHub 存储库</string>
+    <string name="settings_github">GitHub 仓库</string>
     <string name="update_update">更新</string>
     <string name="update_name">名称</string>
     <string name="update_email">电子邮件</string>
@@ -83,7 +81,7 @@
     <string name="incorrect_password_or_database_is_corrupt">密码错误或数据库损坏。</string>
     <string name="database_password_changed_successfully">数据库密码已成功更改！</string>
     <string name="no_database_found_at">"未找到数据库： "</string>
-    <string name="database_successfully_exported_to">"数据库成功导出到： "</string>
+    <string name="database_successfully_exported_to">数据库成功导出到：</string>
     <string name="export_failed">"导出失败： "</string>
     <string name="database_imported_successfully">数据库已成功导入！</string>
     <string name="failed_to_import_database">无法导入数据库</string>
@@ -109,5 +107,4 @@
     <string name="password_cannot_be_empty">密码不能为空！</string>
     <string name="report_an_issue_securely">安全报告问题</string>
     <string name="website">网站</string>
-
 </resources>

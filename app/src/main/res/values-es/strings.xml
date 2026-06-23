@@ -81,8 +81,8 @@
     <string name="incorrect_password_or_database_is_corrupt">Contraseña incorrecta o base de datos corrupta.</string>
     <string name="database_password_changed_successfully">¡Contraseña de la base de datos cambiada con éxito!</string>
     <string name="no_database_found_at">No se encontró ninguna base de datos en:</string>
-    <string name="database_successfully_exported_to">Base de datos exportada correctamente a: </string>
-    <string name="export_failed">Error al exportar: </string>
+    <string name="database_successfully_exported_to">Base de datos exportada correctamente a:</string>
+    <string name="export_failed">Error al exportar:</string>
     <string name="database_imported_successfully">¡Base de datos importada correctamente!</string>
     <string name="failed_to_import_database">Error al importar la base de datos</string>
     <string name="database_deleted_successfully">¡Base de datos eliminada correctamente!</string>
@@ -107,5 +107,4 @@
     <string name="password_cannot_be_empty">¡La contraseña no puede estar vacía!</string>
     <string name="report_an_issue_securely">Reportar un problema</string>
     <string name="website">Sitio web</string>
-
 </resources>
